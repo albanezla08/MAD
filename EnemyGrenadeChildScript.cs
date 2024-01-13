@@ -24,7 +24,9 @@ public class EnemyGrenadeChildScript : MonoBehaviour
         } if (i == 2) {
 
         } if (i == 3) {
-            
+
         }
     }
+
+
 }
