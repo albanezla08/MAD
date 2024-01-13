@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -175,8 +176,8 @@ public class PlayerScript : MonoBehaviour
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         IWeapon weapon_script = weapon_object.GetComponent<IWeapon>();
         weapon_body.velocity = calc_direction().normalized * fire_speed;
-        // Debug.Log()
-        // weapon_script.initialize(2, );
+        // Debug.Log(weapon_queue.Skip(1).ToArray());
+        weapon_script.initialize(2, weapon_queue.Skip(1).ToArray());
     }
     private Vector3 calc_direction() {
         Vector3 playerPos = transform.position;
