@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     private float sprint_time;
 
     //weapon
-    private GameObject next_weapon_prefab;
+    [SerializeField] private GameObject next_weapon_prefab;
 
     // Start is called before the first frame update
     void Start()
