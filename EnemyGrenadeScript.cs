@@ -7,10 +7,12 @@ public class EnemyGrenadeScript : MonoBehaviour
     public GameObject EnemyGrenadeChild;
     public PlayerScript player_script;
     public EnemyGrenadeChildScript child_script;
+    public GameObject FireRingSpawner;
     // Start is called before the first frame update
     void Start()
     {
         player_script = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+        detonate();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class EnemyGrenadeScript : MonoBehaviour
         //instnatiate fire ring spawner
         //this will have a detector collider and if that detects
         //another grenade it will initiate an explosion
-        
+        Instantiate(FireRingSpawner, transform.position, transform.rotation);
         int i = 0;
         while (i < 4) {
             Instantiate(EnemyGrenadeChild, transform.position, transform.rotation);
@@ -32,6 +34,11 @@ public class EnemyGrenadeScript : MonoBehaviour
             i++;
 
         }
+        del_game_obj();
         
+    }
+
+    public void del_game_obj() {
+        Destroy(gameObject);
     }
 }
