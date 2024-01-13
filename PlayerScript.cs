@@ -163,7 +163,7 @@ public class PlayerScript : MonoBehaviour
 
     //weapon functions
     private void fire_weapon() {
-        GameObject weapon_object = Instantiate(next_weapon_prefab);
+        GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
     }
     
 }
