@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    private int next_weapons_count;
-    private GameObject[] next_weapons_prefabs;
+    protected int next_weapons_count;
+    protected GameObject[] next_weapons_prefabs;
     public void initialize(int count, GameObject[] prefabs) {
         next_weapons_count = count;
-        Debug.Log(prefabs);
+        next_weapons_prefabs = prefabs;
+    }
+
+    protected virtual void fire_next() {
+
     }
 }

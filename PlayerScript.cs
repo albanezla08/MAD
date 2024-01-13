@@ -174,9 +174,8 @@ public class PlayerScript : MonoBehaviour
         }
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
-        IWeapon weapon_script = weapon_object.GetComponent<IWeapon>();
+        WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         weapon_body.velocity = calc_direction().normalized * fire_speed;
-        // Debug.Log(weapon_queue.Skip(1).ToArray());
         weapon_script.initialize(2, weapon_queue.Skip(1).ToArray());
     }
     private Vector3 calc_direction() {
