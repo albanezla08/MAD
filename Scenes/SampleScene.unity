@@ -373,7 +373,10 @@ MonoBehaviour:
   active_movement_rate: 0
   base_movement_rate: 0
   sprint_movement_rate: 0
-  next_weapon_prefab: {fileID: 5142522810567175147, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
+  weapon_queue:
+  - {fileID: 5142522810567175147, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
+  - {fileID: 5142522810567175147, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
+  - {fileID: 5142522810567175147, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
 --- !u!1 &509854892
 GameObject:
   m_ObjectHideFlags: 0
