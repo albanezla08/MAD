@@ -168,8 +168,12 @@ public class PlayerScript : MonoBehaviour
     //weapon functions
     private void fire_weapon() {
         GameObject next_weapon_prefab = weapon_queue[0];
+        if (next_weapon_prefab == null) {
+            Debug.Log("nothing to shoot");
+        }
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
+        
         weapon_body.velocity = calc_direction().normalized * fire_speed;
     }
     private Vector3 calc_direction() {
