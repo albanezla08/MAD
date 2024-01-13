@@ -17,6 +17,9 @@ public class PlayerScript : MonoBehaviour
     private float sprint_timer;
     private float sprint_time;
 
+    //weapon
+    private GameObject next_weapon_prefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -155,6 +158,11 @@ public class PlayerScript : MonoBehaviour
     }
     public void debug_check() {
         Debug.Log("Test");
+    }
+
+    //weapon functions
+    private void fire_weapon() {
+        // private weapon_object = 
     }
     
 }
