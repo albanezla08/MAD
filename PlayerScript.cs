@@ -18,7 +18,8 @@ public class PlayerScript : MonoBehaviour
     private float sprint_time;
 
     //weapon
-    [SerializeField] private GameObject next_weapon_prefab;
+    [SerializeField] private GameObject[] weapon_queue;
+    private float fire_speed = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -166,9 +167,10 @@ public class PlayerScript : MonoBehaviour
 
     //weapon functions
     private void fire_weapon() {
+        GameObject next_weapon_prefab = weapon_queue[0];
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
-        weapon_body.velocity = calc_direction().normalized;
+        weapon_body.velocity = calc_direction().normalized * fire_speed;
     }
     private Vector3 calc_direction() {
         Vector3 playerPos = transform.position;
