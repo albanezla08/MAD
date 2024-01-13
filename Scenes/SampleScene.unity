@@ -702,6 +702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGrenadeChild
       objectReference: {fileID: 0}
+    - target: {fileID: 1631870731605574246, guid: 7170aedc41341421a925ea39019f989a, type: 3}
+      propertyPath: m_TagString
+      value: GrenadeChild
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

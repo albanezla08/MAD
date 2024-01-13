@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9074d9323fc4370be40e191508f1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRing: {fileID: 0}
+  FireRing: {fileID: 8466103078377138867, guid: 6f4eadb8289fe49d2b9edd9da8486c34, type: 3}
   spawn_rate: 0
   spawn_timer: 0
   num_spawns: 0

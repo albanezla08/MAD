@@ -13,10 +13,10 @@ public class EnemyGrenadeChildScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        life_time = 1.5f;
+        life_time = 0.5f;
         life_timer = 0.0f;
         movement_control = transform.position;
-        movement_speed = 5.0f;
+        movement_speed = 15.0f;
         dir = 0;
 
     }
@@ -37,7 +37,8 @@ public class EnemyGrenadeChildScript : MonoBehaviour
         if (life_timer < life_time) {
             life_timer += Time.deltaTime;
         } else {
-
+            explode();
+            del_game_obj();
         }
     }
 
