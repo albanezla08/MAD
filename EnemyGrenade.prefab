@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2117022484121331438}
   - component: {fileID: 3723686011585509727}
   - component: {fileID: 4843009951880260410}
-  - component: {fileID: -9020235011340335224}
+  - component: {fileID: -1482181729582152126}
   m_Layer: 0
   m_Name: EnemyGrenade
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-9020235011340335224
+--- !u!114 &-1482181729582152126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5142522810567175147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4110e9deae7eb5740b58096c1fc7f38d, type: 3}
+  m_Script: {fileID: 11500000, guid: e53bf92c77e27406fa8c2b3abc34c502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyGrenadeChild: {fileID: 0}
+  player_script: {fileID: 0}
+  child_script: {fileID: 0}
