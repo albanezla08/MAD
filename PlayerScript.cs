@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
         sprint_timer = 0.0f;
         sprint_time = 0.0f;
 
+        fire_weapon();
     }
 
     // Update is called once per frame
@@ -162,7 +163,7 @@ public class PlayerScript : MonoBehaviour
 
     //weapon functions
     private void fire_weapon() {
-        // private weapon_object = 
+        GameObject weapon_object = Instantiate(next_weapon_prefab);
     }
     
 }
