@@ -37,8 +37,6 @@ public class PlayerScript : MonoBehaviour
         sprint_movement_rate = 50.0f * 0.7f;
         sprint_timer = 0.0f;
         sprint_time = 0.0f;
-
-        fire_weapon();
     }
 
     // Update is called once per frame
@@ -106,6 +104,11 @@ public class PlayerScript : MonoBehaviour
 
         }
 
+        //weapon controls
+        if (Input.GetMouseButtonDown(0)) {
+            fire_weapon();
+        }
+
         //sprint
         if (sprint_timer < sprint_time) {
             sprint_timer += Time.deltaTime;
@@ -164,6 +167,14 @@ public class PlayerScript : MonoBehaviour
     //weapon functions
     private void fire_weapon() {
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
+        Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
+        weapon_body.velocity = calc_direction().normalized;
+    }
+    private Vector3 calc_direction() {
+        Vector3 playerPos = transform.position;
+        Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorPos.z = 0;
+        return cursorPos - playerPos;
     }
     
 }
