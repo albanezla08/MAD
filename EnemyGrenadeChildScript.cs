@@ -4,29 +4,52 @@ using UnityEngine;
 
 public class EnemyGrenadeChildScript : MonoBehaviour
 {
+    public float life_timer;
+    public float life_time;
+    public Vector3 movement_control;
+    public float movement_speed;
+    public int dir;
+    public GameObject FireRingSpawner;
     // Start is called before the first frame update
     void Start()
     {
-        
+        life_time = 1.5f;
+        life_timer = 0.0f;
+        movement_control = transform.position;
+        movement_speed = 5.0f;
+        dir = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void set_dir(int i) {
-        if (i == 0) {
-
-        } if (i == 1) {
-
-        } if (i == 2) {
-
-        } if (i == 3) {
+        transform.position = movement_control;
+        if (dir == 0) {
+            movement_control.y += movement_speed * Time.deltaTime;
+        } else if (dir == 1) {
+            movement_control.x += movement_speed * Time.deltaTime;
+        } else if (dir == 2) {
+            movement_control.y -= movement_speed * Time.deltaTime;
+        } else if (dir == 3) {
+            movement_control.x -= movement_speed * Time.deltaTime;
+        }
+        if (life_timer < life_time) {
+            life_timer += Time.deltaTime;
+        } else {
 
         }
     }
 
+    public void set_dir(int i) {
+        dir = i;
+    }
 
+    public void explode() {
+        Instantiate(FireRingSpawner, transform.position, transform.rotation);
+    }
+
+    public void del_game_obj() {
+        Destroy(gameObject);
+    }
 }
