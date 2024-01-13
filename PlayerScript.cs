@@ -175,8 +175,9 @@ public class PlayerScript : MonoBehaviour
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
-        weapon_body.velocity = calc_direction().normalized * fire_speed;
-        weapon_script.initialize(2, weapon_queue.Skip(1).ToArray());
+        Vector3 shoot_dir = calc_direction().normalized;
+        weapon_body.velocity = shoot_dir * fire_speed;
+        weapon_script.initialize(2, weapon_queue.Skip(1).ToArray(), shoot_dir);
     }
     private Vector3 calc_direction() {
         Vector3 playerPos = transform.position;
