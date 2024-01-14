@@ -8,6 +8,7 @@ public class P_WeaponsSpawner : MonoBehaviour
     [SerializeField] private Vector3 bottom_left_bound = new Vector3(-55, -25, 0);
     [SerializeField] private Vector3 top_right_bound = new Vector3(55, 25, 0);
     [SerializeField] Vector2 max_spawn_time_range = new Vector2(1.5f, 3f);
+    [SerializeField] float min_distance_from_colliders = 0.5f;
     float max_spawn_time;
     float curr_spawn_time = 0f;
     // Start is called before the first frame update
@@ -37,12 +38,15 @@ public class P_WeaponsSpawner : MonoBehaviour
     }
 
     Vector3 choose_position() {
+        return choose_position_helper(3);
+    }
+    Vector3 choose_position_helper(int attempts) {
         Vector3 result = Vector3.zero;
         result.x = Random.Range(bottom_left_bound.x, top_right_bound.x);
         result.y = Random.Range(bottom_left_bound.y, top_right_bound.y);
-        Collider2D col = Physics2D.OverlapCircle(result, 0.5f);
-        if (col != null) {
-            result = choose_position();
+        Collider2D col = Physics2D.OverlapCircle(result, min_distance_from_colliders);
+        if (col != null && attempts > 0) {
+            result = choose_position_helper(attempts - 1);
         }
         return result;
     }
