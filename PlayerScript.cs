@@ -182,6 +182,7 @@ public class PlayerScript : MonoBehaviour
         Vector3 shoot_dir = calc_direction().normalized;
         weapon_body.velocity = shoot_dir * fire_speed;
         weapon_script.initialize(2, weapon_queue_script, shoot_dir);
+        weapon_queue_script.clear();
     }
     private Vector3 calc_direction() {
         Vector3 playerPos = transform.position;

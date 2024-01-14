@@ -22,6 +22,7 @@ public class GrenadeController : WeaponController
         }
     }
     protected override void fire_next() {
+        Debug.Log(weapon_queue_script);
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         if (next_weapon_prefab == null) {
             Debug.Log("nothing to shoot");
@@ -32,5 +33,6 @@ public class GrenadeController : WeaponController
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         weapon_body.velocity = point_dir * fire_speed;
         weapon_script.initialize(2, weapon_queue_script, point_dir * -1);
+        weapon_queue_script.clear();
     }
 }

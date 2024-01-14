@@ -12,8 +12,24 @@ public class WeaponsQueueController : MonoBehaviour
             if (current != null) {
                 next_weapon_prefab = current;
                 weapons_queue[i] = null;
+                break;
             }
         }
         return next_weapon_prefab;
+    }
+
+    public void copy_queue(WeaponsQueueController source_script) {
+        GameObject[] temp = source_script.get_queue();
+        for (int i = 0; i < temp.Length; i++) {
+            weapons_queue[i] = temp[i];
+        }
+    }
+    public GameObject[] get_queue() {
+        return weapons_queue;
+    }
+    public void clear() {
+        for (int i = 0; i < weapons_queue.Length; i++) {
+            weapons_queue[i] = null;
+        }
     }
 }

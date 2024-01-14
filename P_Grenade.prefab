@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8136833072267696766}
   - component: {fileID: 477500562134239007}
   - component: {fileID: -4309678709461306769}
+  - component: {fileID: 7835510887798570260}
   m_Layer: 0
   m_Name: P_Grenade
   m_TagString: Untagged
@@ -125,3 +126,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4110e9deae7eb5740b58096c1fc7f38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7835510887798570260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2334090704034223748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51769e750de628e44b131e6c97555b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons_queue: []
