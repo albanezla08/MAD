@@ -8,10 +8,12 @@ public class EnemyGrenadeScript : MonoBehaviour
     public PlayerScript player_script;
     public EnemyGrenadeChildScript child_script;
     public GameObject FireRingSpawner;
+    public int child_dir;
     // Start is called before the first frame update
     void Start()
     {
         player_script = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+        child_dir = 0;
         detonate();
     }
 
@@ -29,10 +31,7 @@ public class EnemyGrenadeScript : MonoBehaviour
         int i = 0;
         while (i < 4) {
             Instantiate(EnemyGrenadeChild, transform.position, transform.rotation);
-            child_script = GameObject.FindWithTag("GrenadeChild").GetComponent<EnemyGrenadeChildScript>();
-            child_script.set_dir(i);
             i++;
-
         }
         del_game_obj();
         
@@ -40,5 +39,8 @@ public class EnemyGrenadeScript : MonoBehaviour
 
     public void del_game_obj() {
         Destroy(gameObject);
+    }
+    public int get_child_dir() {
+        return child_dir++ - 1;
     }
 }

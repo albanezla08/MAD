@@ -10,14 +10,17 @@ public class EnemyGrenadeChildScript : MonoBehaviour
     public float movement_speed;
     public int dir;
     public GameObject FireRingSpawner;
+    public EnemyGrenadeScript parent_script;
+    
     // Start is called before the first frame update
     void Start()
     {
-        life_time = 0.5f;
+        life_time = 0.25f;
         life_timer = 0.0f;
         movement_control = transform.position;
-        movement_speed = 15.0f;
-        dir = 0;
+        movement_speed = 30.0f;
+        parent_script = GameObject.FindWithTag("GrenadeParent").GetComponent<EnemyGrenadeScript>();
+        dir = parent_script.get_child_dir();
 
     }
 
@@ -38,7 +41,6 @@ public class EnemyGrenadeChildScript : MonoBehaviour
             life_timer += Time.deltaTime;
         } else {
             explode();
-            del_game_obj();
         }
     }
 
@@ -48,6 +50,7 @@ public class EnemyGrenadeChildScript : MonoBehaviour
 
     public void explode() {
         Instantiate(FireRingSpawner, transform.position, transform.rotation);
+        del_game_obj();
     }
 
     public void del_game_obj() {
