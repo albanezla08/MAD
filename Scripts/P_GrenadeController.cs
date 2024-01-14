@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class GrenadeController : WeaponController
 {
+    [SerializeField] private float num_shrapnel;
     float current_time = 0f;
-    float max_time = 1f;
+    float max_time = 3f;
     void Start()
     {
         fire_speed = 5f;
@@ -28,11 +29,15 @@ public class GrenadeController : WeaponController
             Debug.Log("nothing to shoot");
             return;
         }
-        GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
-        Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
-        WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
-        weapon_body.velocity = point_dir * fire_speed;
-        weapon_script.initialize(2, weapon_queue_script, point_dir * -1);
+        // GameObject[num_shrapnel] weapon_objects;
+        for (int i = 0; i < num_shrapnel; i++) {
+            GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
+            Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
+            WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
+            Quaternion rotate_amount = Quaternion.Euler(0, 0, -90 * i);
+            weapon_body.velocity = rotate_amount * point_dir * fire_speed;
+            weapon_script.initialize(2, weapon_queue_script, point_dir * -1);
+        }
         weapon_queue_script.clear();
     }
 }

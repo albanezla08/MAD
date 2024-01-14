@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4110e9deae7eb5740b58096c1fc7f38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  num_shrapnel: 4
 --- !u!114 &7835510887798570260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,4 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51769e750de628e44b131e6c97555b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons_queue: []
+  weapons_queue:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

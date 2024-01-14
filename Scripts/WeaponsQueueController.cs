@@ -20,6 +20,7 @@ public class WeaponsQueueController : MonoBehaviour
 
     public void copy_queue(WeaponsQueueController source_script) {
         GameObject[] temp = source_script.get_queue();
+        // It's because weapons_queue has a length of 0
         for (int i = 0; i < temp.Length; i++) {
             weapons_queue[i] = temp[i];
         }

@@ -12,10 +12,6 @@ public class WeaponController : MonoBehaviour
         next_weapons_count = count;
         weapon_queue_script = gameObject.GetComponent<WeaponsQueueController>();
         weapon_queue_script.copy_queue(source_queue);
-        GameObject[] queue = weapon_queue_script.get_queue();
-        for (int i = 0; i < queue.Length; i++) {
-            Debug.Log(queue[i]);
-        }
         point_dir = direction;
     }
 
