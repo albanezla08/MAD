@@ -249,6 +249,9 @@ public class PlayerScript : MonoBehaviour
             hit_timer = 0.0f;
             hit_dir = transform.position - col.transform.position;
             hp--;
+            if (hp <= 0) {
+                Destroy(gameObject);
+            }
         }
     }
     

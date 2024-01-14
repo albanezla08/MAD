@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class EnemyGunController : EnemyController
 {
-    float shoot_at_player_range = 15f;
-    float time_before_shooting = 2f;
-    float shoot_speed = 15f;
-    float shot_duration = 3f;
+    [SerializeField] float shoot_at_player_range = 15f;
+    [SerializeField] float time_before_shooting = 2f;
+    [SerializeField] float shoot_speed = 5f;
+    [SerializeField] float shot_duration = 3f;
     protected override void change_to_chase()
     {
         state_machine.change_state(new ChaseState(rb, chase_speed, change_to_aiming, transform, player_transform, shoot_at_player_range));

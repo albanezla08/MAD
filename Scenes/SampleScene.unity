@@ -381,7 +381,6 @@ GameObject:
   - component: {fileID: 323285670}
   - component: {fileID: 323285674}
   - component: {fileID: 323285675}
-  - component: {fileID: 323285676}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -555,6 +554,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  hp: 3
 --- !u!114 &323285675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,22 +571,6 @@ MonoBehaviour:
   - {fileID: 2334090704034223748, guid: c8d99ea10c2742a42bb2360f634e0523, type: 3}
   - {fileID: 954832939202926715, guid: 0c0b290da2d694a408227173d8c88301, type: 3}
   - {fileID: 2334090704034223748, guid: c8d99ea10c2742a42bb2360f634e0523, type: 3}
---- !u!114 &323285676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323285669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 206d48954179e4c4ba0edb2940f08df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layer_mask:
-    serializedVersion: 2
-    m_Bits: 0
-  stop_distance: 1
 --- !u!1 &383180315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1946778066
 MonoBehaviour:
   m_ObjectHideFlags: 0

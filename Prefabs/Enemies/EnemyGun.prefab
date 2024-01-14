@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 6847698630902075898}
   - component: {fileID: 7309567386916602822}
   - component: {fileID: 7411387418014434230}
-  - component: {fileID: 322426545196917126}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: EnemyGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +44,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908132805481921777}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -116,22 +115,11 @@ MonoBehaviour:
   chase_speed: 3
   recovery_time: 3
   player_detect_distance: 10
---- !u!114 &322426545196917126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908132805481921777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 206d48954179e4c4ba0edb2940f08df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layer_mask:
-    serializedVersion: 2
-    m_Bits: 8
-  stop_distance: 1
+  hp: 5
+  shoot_at_player_range: 15
+  time_before_shooting: 2
+  shoot_speed: 15
+  shot_duration: 3
 --- !u!1 &4484124779978828472
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8103436965813746981}
   - component: {fileID: 7473640446240370119}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4790294979971567226}
   - component: {fileID: 4776450597442658613}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
