@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] protected float chase_speed = 3f;
     [SerializeField] protected float recovery_time;
     [SerializeField] protected float player_detect_distance = 10f;
+    [SerializeField] protected int hp;
     protected float fall_time;
     // Start is called before the first frame update
     void Start()
@@ -43,8 +44,17 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     void IDamageable.on_hit(int damage, Vector3 direction) {
+        hp -= damage;
+        if (hp <= 0) {
+            die();
+            return;
+        }
         fall_time = 1.5f;
 
         state_machine.change_state(new FallingState(rb, move_speed, direction, fall_time, change_to_recovery));
+    }
+
+    void die() {
+        Destroy(gameObject);
     }
 }

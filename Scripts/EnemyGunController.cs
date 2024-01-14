@@ -11,15 +11,12 @@ public class EnemyGunController : EnemyController
     float shot_duration = 3f;
     protected override void change_to_chase()
     {
-        Debug.Log(rb);
         state_machine.change_state(new ChaseState(rb, chase_speed, change_to_aiming, transform, player_transform, shoot_at_player_range));
-        Debug.Log("change to chase");
     }
 
     void change_to_aiming()
     {
         state_machine.change_state(new AimingState(rb, transform, player_transform, time_before_shooting, shoot_speed, change_to_falling));
-        Debug.Log("start aiming");
     }
 
     void change_to_falling()
