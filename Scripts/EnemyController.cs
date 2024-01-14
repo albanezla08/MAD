@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] protected float chase_speed = 3f;
     [SerializeField] protected float recovery_time;
     [SerializeField] protected float player_detect_distance = 10f;
-    [SerializeField] protected int hp;
+    [SerializeField] protected int hp = 5;
     protected float fall_time;
     // Start is called before the first frame update
     void Start()

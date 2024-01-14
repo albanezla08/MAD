@@ -35,6 +35,8 @@ public class PlayerScript : MonoBehaviour
     private PreventOverlap po_script;
     //events for UI
     public UnityEvent<WeaponsQueueController> queue_changed;
+    //health
+    [SerializeField] int hp = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -246,6 +248,7 @@ public class PlayerScript : MonoBehaviour
             hit_by_enemy = true;
             hit_timer = 0.0f;
             hit_dir = transform.position - col.transform.position;
+            hp--;
         }
     }
     
