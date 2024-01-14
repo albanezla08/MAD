@@ -23,7 +23,6 @@ public class DummyController : MonoBehaviour, IDamageable
     }
     void Update()
     {
-        Debug.Log(currentBadState);
         switch (currentBadState) {
             case BadStates.Idle:
                 break;
