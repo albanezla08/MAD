@@ -362,6 +362,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &309064026 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 9032047961156624159, guid: 7170aedc41341421a925ea39019f989a, type: 3}
+  m_PrefabInstance: {fileID: 4597981366611852151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &323285669
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,11 +768,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_transform: {fileID: 323285673}
+--- !u!1 &578842879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5142522810567175147, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
+  m_PrefabInstance: {fileID: 5072402128514735894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &578842881 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4843009951880260410, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
   m_PrefabInstance: {fileID: 5072402128514735894}
   m_PrefabAsset: {fileID: 0}
+--- !u!58 &578842885
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578842879}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.11788559, y: 0}
+  serializedVersion: 2
+  m_Radius: 7.017418
 --- !u!1 &634533268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,10 +2327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGrenadeChild
       objectReference: {fileID: 0}
-    - target: {fileID: 1631870731605574246, guid: 7170aedc41341421a925ea39019f989a, type: 3}
-      propertyPath: m_TagString
-      value: GrenadeChild
-      objectReference: {fileID: 0}
+    - target: {fileID: 5197434741656042422, guid: 7170aedc41341421a925ea39019f989a, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 309064026}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2370,7 +2415,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5142522810567175147, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 578842885}
   m_SourcePrefab: {fileID: 100100000, guid: 3f88925790c3c184aab91080a07ce6a5, type: 3}
 --- !u!1001 &8633139407466070743
 PrefabInstance:

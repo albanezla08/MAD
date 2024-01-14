@@ -21,7 +21,6 @@ public class EnemyGrenadeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         wander_delay = Random.Range(1.8f, 4.2f);
         wander_delay_timer = 0.0f;
         dir_to_choose = choose_dir();
@@ -87,5 +86,11 @@ public class EnemyGrenadeScript : MonoBehaviour
             wanted_vector = Vector3.left;
         }
         return wanted_vector;
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "Player") {
+            detonate();
+        }
     }
 }
