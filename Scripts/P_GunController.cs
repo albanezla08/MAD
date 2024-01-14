@@ -32,6 +32,6 @@ public class P_GunController : WeaponController
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         weapon_body.velocity = point_dir * fire_speed;
-        weapon_script.initialize(2, weapon_queue_script, point_dir);
+        weapon_script.initialize(2, weapon_queue_script, point_dir, firer);
     }
 }

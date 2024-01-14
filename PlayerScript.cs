@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+
+// [System.Serializable] public class WeaponsQueueControllerUnityEvent:UnityEvent<WeaponsQueueController> {}
 
 public class PlayerScript : MonoBehaviour
 {
@@ -23,6 +26,8 @@ public class PlayerScript : MonoBehaviour
     private float fire_speed = 5f;
     //collision/movement
     private PreventOverlap po_script;
+    //events for UI
+    public UnityEvent<WeaponsQueueController> queue_changed;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +49,7 @@ public class PlayerScript : MonoBehaviour
 
         //weapons
         weapon_queue_script = gameObject.GetComponent<WeaponsQueueController>();
+        queue_changed.Invoke(weapon_queue_script);
 
         //collision/movement
         po_script = gameObject.GetComponent<PreventOverlap>();
@@ -178,6 +184,7 @@ public class PlayerScript : MonoBehaviour
     //weapon functions
     private void fire_weapon() {
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
+        queue_changed.Invoke(weapon_queue_script);
         if (next_weapon_prefab == null) {
             Debug.Log("nothing to shoot");
             return;
@@ -187,8 +194,9 @@ public class PlayerScript : MonoBehaviour
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         Vector3 shoot_dir = calc_direction().normalized;
         weapon_body.velocity = shoot_dir * fire_speed;
-        weapon_script.initialize(2, weapon_queue_script, shoot_dir);
+        weapon_script.initialize(2, weapon_queue_script, shoot_dir, gameObject);
         weapon_queue_script.clear();
+        queue_changed.Invoke(weapon_queue_script);
     }
     private Vector3 calc_direction() {
         Vector3 playerPos = transform.position;
@@ -202,6 +210,7 @@ public class PlayerScript : MonoBehaviour
         PickupIdentifier pickupIdentifier = col.GetComponent<PickupIdentifier>();
         if (pickupIdentifier != null) {
             bool added_weapon = weapon_queue_script.add_weapon(pickupIdentifier.get_weapon_prefab());
+            queue_changed.Invoke(weapon_queue_script);
             if (added_weapon) {
                 Destroy(col.gameObject);
             }

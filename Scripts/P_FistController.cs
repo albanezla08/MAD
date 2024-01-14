@@ -34,6 +34,6 @@ public class P_FistController : WeaponController
         Transform weapon_transform = weapon_object.transform;
         weapon_transform.localScale *= 1.5f;
         weapon_body.velocity = point_dir * fire_speed;
-        weapon_script.initialize(2, weapon_queue_script, point_dir);
+        weapon_script.initialize(2, weapon_queue_script, point_dir, firer);
     }
 }

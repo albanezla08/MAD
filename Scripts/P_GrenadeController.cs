@@ -39,7 +39,7 @@ public class GrenadeController : WeaponController
             // The commented out line leads to unintended and kind of unintuitive behavior
             // but it's interesting behavior that I think adds a more interesting choice in using a gun
             // weapon_script.initialize(2, weapon_queue_script, point_dir);
-            weapon_script.initialize(2, weapon_queue_script, new_point_dir);
+            weapon_script.initialize(2, weapon_queue_script, new_point_dir, firer);
         }
         weapon_queue_script.clear();
     }

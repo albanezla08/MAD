@@ -40,6 +40,10 @@ public class P_WeaponsSpawner : MonoBehaviour
         Vector3 result = Vector3.zero;
         result.x = Random.Range(bottom_left_bound.x, top_right_bound.x);
         result.y = Random.Range(bottom_left_bound.y, top_right_bound.y);
+        Collider2D col = Physics2D.OverlapCircle(result, 0.5f);
+        if (col != null) {
+            result = choose_position();
+        }
         return result;
     }
 }
