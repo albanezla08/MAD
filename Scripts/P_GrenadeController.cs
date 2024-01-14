@@ -23,20 +23,22 @@ public class GrenadeController : WeaponController
         }
     }
     protected override void fire_next() {
-        Debug.Log(weapon_queue_script);
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         if (next_weapon_prefab == null) {
             Debug.Log("nothing to shoot");
             return;
         }
-        // GameObject[num_shrapnel] weapon_objects;
         for (int i = 0; i < num_shrapnel; i++) {
             GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
             Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
             WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
             Quaternion rotate_amount = Quaternion.Euler(0, 0, -90 * i);
-            weapon_body.velocity = rotate_amount * point_dir * fire_speed;
-            weapon_script.initialize(2, weapon_queue_script, point_dir * -1);
+            Vector3 new_point_dir = rotate_amount * point_dir;
+            weapon_body.velocity = new_point_dir * fire_speed;
+            // The commented out line leads to unintended and kind of unintuitive behavior
+            // but it's interesting behavior that I think adds a more interesting choice in using a gun
+            // weapon_script.initialize(2, weapon_queue_script, point_dir);
+            weapon_script.initialize(2, weapon_queue_script, new_point_dir);
         }
         weapon_queue_script.clear();
     }
