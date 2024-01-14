@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         state_machine.update();
     }
 
-    void change_to_recovery() {
+    protected void change_to_recovery() {
         state_machine.change_state(new RecoveryState(rb, recovery_time, change_to_wander));
     }
 
