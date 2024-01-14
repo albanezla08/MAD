@@ -21,6 +21,13 @@ public class PlayerScript : MonoBehaviour
     private float sprint_timer;
     private float sprint_time;
 
+    //colliding
+    public bool hit_by_enemy;
+    public float hit_timer;
+    public float hit_time;
+    public Vector3 hit_dir;
+    public float hit_speed;
+
     //weapon
     private WeaponsQueueController weapon_queue_script;
     private float fire_speed = 5f;
@@ -53,86 +60,103 @@ public class PlayerScript : MonoBehaviour
 
         //collision/movement
         po_script = gameObject.GetComponent<PreventOverlap>();
+
+        hit_by_enemy = false;
+        hit_timer = 0.0f;
+        hit_time = 0.35f;
+        hit_dir = new Vector3(0.0f, 0.0f, 0.0f);
+        hit_speed = 15.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //basic movement
-        // control_velocity = po_script.check_overlap(control_velocity);
         body.velocity = control_velocity;
+        if (!hit_by_enemy) {
+            //basic movement
+            // control_velocity = po_script.check_overlap(control_velocity);
+            
 
-        //basic movement
-        if (Input.GetKey(KeyCode.W)) {
-            control_velocity.y = active_movement_rate;
+            //basic movement
+            if (Input.GetKey(KeyCode.W)) {
+                control_velocity.y = active_movement_rate;
 
-        } else if (control_velocity.y > 0){
-            control_velocity.y = 0;
-        }
-        if (Input.GetKey(KeyCode.A)) {
-            control_velocity.x = -active_movement_rate;
+            } else if (control_velocity.y > 0){
+                control_velocity.y = 0;
+            }
+            if (Input.GetKey(KeyCode.A)) {
+                control_velocity.x = -active_movement_rate;
 
-        } else if (control_velocity.x < 0){
-            control_velocity.x = 0;
-        }
-        if (Input.GetKey(KeyCode.S)) {
-            control_velocity.y = -active_movement_rate;
+            } else if (control_velocity.x < 0){
+                control_velocity.x = 0;
+            }
+            if (Input.GetKey(KeyCode.S)) {
+                control_velocity.y = -active_movement_rate;
 
-        } else if (control_velocity.y < 0){
-            control_velocity.y = 0;
-        }
-        if (Input.GetKey(KeyCode.D)) {
-            control_velocity.x = active_movement_rate;
+            } else if (control_velocity.y < 0){
+                control_velocity.y = 0;
+            }
+            if (Input.GetKey(KeyCode.D)) {
+                control_velocity.x = active_movement_rate;
 
-        } else if (control_velocity.x > 0){
-            control_velocity.x = 0;
-        }
+            } else if (control_velocity.x > 0){
+                control_velocity.x = 0;
+            }
 
-        //double movement key inputs and correcting:
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) {
-            control_velocity.y = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
-            control_velocity.x = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
+            //double movement key inputs and correcting:
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) {
+                control_velocity.y = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
+                control_velocity.x = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
 
-        }
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) {
-            control_velocity.y = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
-            control_velocity.x = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
+            }
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) {
+                control_velocity.y = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
+                control_velocity.x = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
 
-        }
-        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) {
-            control_velocity.y = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
-            control_velocity.x = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
+            }
+            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) {
+                control_velocity.y = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
+                control_velocity.x = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
 
-        }
-        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D)) {
-            control_velocity.y = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
-            control_velocity.x = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
+            }
+            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D)) {
+                control_velocity.y = (float)(-(active_movement_rate / 2) * System.Math.Sqrt(2));
+                control_velocity.x = (float)((active_movement_rate / 2) * System.Math.Sqrt(2));
 
-        }
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) {
-            control_velocity.x = 0;
-            control_velocity.y = 0;
+            }
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) {
+                control_velocity.x = 0;
+                control_velocity.y = 0;
 
-        }
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) {
-            control_velocity.x = 0;
-            control_velocity.y = 0;
+            }
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) {
+                control_velocity.x = 0;
+                control_velocity.y = 0;
 
-        }
+            }
 
-        //weapon controls
-        if (Input.GetMouseButtonDown(0)) {
-            fire_weapon();
-        }
+            //weapon controls
+            if (Input.GetMouseButtonDown(0)) {
+                fire_weapon();
+            }
 
-        //sprint
-        if (sprint_timer < sprint_time) {
-            sprint_timer += Time.deltaTime;
-        } else if (sprint_timer != 0.0f) {
-            exit_sprint();
+            //sprint
+            if (sprint_timer < sprint_time) {
+                sprint_timer += Time.deltaTime;
+            } else if (sprint_timer != 0.0f) {
+                exit_sprint();
+            } else {
+                //do nothing
+            }
         } else {
-            //do nothing
+            if (hit_timer < hit_time) {
+                hit_timer += Time.deltaTime;
+                control_velocity = 5 * hit_dir;
+
+            } else {
+                hit_by_enemy = false;
+                hit_timer = 0.0f;
+            }
         }
 
     }
@@ -214,6 +238,14 @@ public class PlayerScript : MonoBehaviour
             if (added_weapon) {
                 Destroy(col.gameObject);
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.layer == 7) {
+            hit_by_enemy = true;
+            hit_timer = 0.0f;
+            hit_dir = transform.position - col.transform.position;
         }
     }
     

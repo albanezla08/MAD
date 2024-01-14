@@ -11,6 +11,7 @@ public class EnemyGrenadeChildScript : MonoBehaviour
     public int dir;
     public GameObject FireRingSpawner;
     public EnemyGrenadeScript parent_script;
+    public Rigidbody2D body;
     
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class EnemyGrenadeChildScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        body.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         transform.position = movement_control;
         if (dir == 0) {
             movement_control.y += movement_speed * Time.deltaTime;
