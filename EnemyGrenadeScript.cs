@@ -9,6 +9,7 @@ public class EnemyGrenadeScript : MonoBehaviour
     public EnemyGrenadeChildScript child_script;
     public GameObject FireRingSpawner;
     public int child_dir;
+    public Rigidbody2D body;
 
     //wander
     public float speed;
@@ -20,6 +21,7 @@ public class EnemyGrenadeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         wander_delay = Random.Range(1.8f, 4.2f);
         wander_delay_timer = 0.0f;
         dir_to_choose = choose_dir();
@@ -33,6 +35,7 @@ public class EnemyGrenadeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        body.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         wander_logic();
             
         wander(dir_to_choose);
