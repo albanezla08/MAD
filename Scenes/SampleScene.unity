@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 323285671}
   - component: {fileID: 323285670}
   - component: {fileID: 323285674}
+  - component: {fileID: 323285675}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -378,7 +379,19 @@ MonoBehaviour:
   active_movement_rate: 0
   base_movement_rate: 0
   sprint_movement_rate: 0
-  weapon_queue:
+--- !u!114 &323285675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323285669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51769e750de628e44b131e6c97555b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons_queue:
   - {fileID: 2334090704034223748, guid: c8d99ea10c2742a42bb2360f634e0523, type: 3}
   - {fileID: 2334090704034223748, guid: c8d99ea10c2742a42bb2360f634e0523, type: 3}
   - {fileID: 2334090704034223748, guid: c8d99ea10c2742a42bb2360f634e0523, type: 3}
