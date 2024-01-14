@@ -10,8 +10,9 @@ public class GrenadeController : WeaponController
     [SerializeField] private float num_shrapnel;
     float current_time = 0f;
     float max_time = 3f;
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         fire_speed = 5f;
     }
     void Update()
@@ -32,7 +33,7 @@ public class GrenadeController : WeaponController
             GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
             Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
             WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
-            Quaternion rotate_amount = Quaternion.Euler(0, 0, -90 * i);
+            Quaternion rotate_amount = Quaternion.Euler(0, 0, -(360 / num_shrapnel) * i);
             Vector3 new_point_dir = rotate_amount * point_dir;
             weapon_body.velocity = new_point_dir * fire_speed;
             // The commented out line leads to unintended and kind of unintuitive behavior
