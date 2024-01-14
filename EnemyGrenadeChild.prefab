@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9032047961156624159}
   m_Layer: 0
   m_Name: EnemyGrenadeChild
-  m_TagString: Untagged
+  m_TagString: GrenadeChild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 81e829b6e8bb64206884582351e0ce1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e7bd164d03394601b8e0c0e1e7ea6ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +104,8 @@ MonoBehaviour:
   movement_speed: 0
   dir: 0
   FireRingSpawner: {fileID: 7837318002754000158, guid: f62e0a3adcfde445e9312a8d6e6da912, type: 3}
+  parent_script: {fileID: 0}
+  body: {fileID: 9032047961156624159}
 --- !u!50 &9032047961156624159
 Rigidbody2D:
   serializedVersion: 4
