@@ -1848,7 +1848,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0b8cc78b92a5478a51c1cd6db95db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_transform: {fileID: 323285673}
   move_speed: 2
+  recovery_time: 3
+  player_detect_distance: 10
 --- !u!1 &1844671961
 GameObject:
   m_ObjectHideFlags: 0
