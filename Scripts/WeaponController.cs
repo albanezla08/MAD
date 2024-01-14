@@ -5,12 +5,12 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     protected int next_weapons_count;
-    protected GameObject[] next_weapons_prefabs;
+    protected WeaponsQueueController weapon_queue_script;
     protected Vector3 point_dir;
     protected float fire_speed = 1f;
-    public void initialize(int count, GameObject[] prefabs, Vector3 direction) {
+    public void initialize(int count, WeaponsQueueController weapons_queue, Vector3 direction) {
         next_weapons_count = count;
-        next_weapons_prefabs = prefabs;
+        weapon_queue_script = weapons_queue;
         point_dir = direction;
     }
 
