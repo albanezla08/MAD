@@ -21,6 +21,8 @@ public class PlayerScript : MonoBehaviour
     //weapon
     private WeaponsQueueController weapon_queue_script;
     private float fire_speed = 5f;
+    //collision/movement
+    private PreventOverlap po_script;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,9 @@ public class PlayerScript : MonoBehaviour
 
         //weapons
         weapon_queue_script = gameObject.GetComponent<WeaponsQueueController>();
+
+        //collision/movement
+        po_script = gameObject.GetComponent<PreventOverlap>();
     }
 
     // Update is called once per frame
@@ -49,6 +54,7 @@ public class PlayerScript : MonoBehaviour
     {
 
         //basic movement
+        // control_velocity = po_script.check_overlap(control_velocity);
         body.velocity = control_velocity;
 
         //basic movement
@@ -189,6 +195,17 @@ public class PlayerScript : MonoBehaviour
         Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursorPos.z = 0;
         return cursorPos - playerPos;
+    }
+
+    //weapon pickups
+    void OnTriggerEnter2D(Collider2D col) {
+        PickupIdentifier pickupIdentifier = col.GetComponent<PickupIdentifier>();
+        if (pickupIdentifier != null) {
+            bool added_weapon = weapon_queue_script.add_weapon(pickupIdentifier.get_weapon_prefab());
+            if (added_weapon) {
+                Destroy(col.gameObject);
+            }
+        }
     }
     
 }
