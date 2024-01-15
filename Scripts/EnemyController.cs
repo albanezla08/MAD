@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Security;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
@@ -15,11 +16,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] protected float recovery_time;
     [SerializeField] protected float player_detect_distance = 10f;
     [SerializeField] protected int hp = 5;
+    [SerializeField] protected GameObject drop_prefab;
     protected float fall_time;
     protected SpriteRenderer exclamation_renderer;
     protected SpriteRenderer stars_renderer;
     // used to make sure scaling difficulty speed is reflected in wander speed
     float wander_speed_refresh_time = 6f;
+    public UnityEvent death_event;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +73,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     void die() {
+        death_event.Invoke();
+        Instantiate(drop_prefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
