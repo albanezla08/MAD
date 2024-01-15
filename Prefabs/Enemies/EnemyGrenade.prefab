@@ -321,11 +321,11 @@ MonoBehaviour:
   move_speed: 2
   chase_speed: 3
   recovery_time: 1
-  player_detect_distance: 10
+  player_detect_distance: 30
   hp: 5
   FireRingSpawner: {fileID: 7837318002754000158, guid: f62e0a3adcfde445e9312a8d6e6da912, type: 3}
   EnemyGrenadeChild: {fileID: 1631870731605574246, guid: 7170aedc41341421a925ea39019f989a, type: 3}
-  explode_player_distance: 10
+  explode_player_distance: 15
 --- !u!70 &8063285229641276241
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

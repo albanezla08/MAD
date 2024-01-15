@@ -394,8 +394,8 @@ Transform:
   m_GameObject: {fileID: 209240420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4853, y: -35.3, z: 0}
-  m_LocalScale: {x: 23.084667, y: 0.7010688, z: 1}
+  m_LocalPosition: {x: 0, y: -100, z: 0}
+  m_LocalScale: {x: 70, y: 0.7010688, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1454,6 +1454,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game_over_screen: {fileID: 692240899}
   player: {fileID: 323285669}
+  fist: {fileID: 6199270736225903260, guid: a5acdb17b4c8d4048a62bd7bbfd5c416, type: 3}
+  gun: {fileID: 908132805481921777, guid: 3ca7f9dec6183974ba59571a5aea4f2d, type: 3}
+  bomb: {fileID: 5297969467272001317, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
+  boundary: 0
+  radius_to_player: 0
+  spawn_time: 0
+  spawn_timer: 0
+  difficulty_lvl: 0
   audio_manager_script: {fileID: 1705282710}
 --- !u!1 &1339456743 stripped
 GameObject:
@@ -1694,8 +1702,8 @@ Transform:
   m_GameObject: {fileID: 1527283136}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63.7578, y: 0.2644, z: 0}
-  m_LocalScale: {x: 1.3712, y: 5.323226, z: 1}
+  m_LocalPosition: {x: -100, y: 0, z: 0}
+  m_LocalScale: {x: 1.3712, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2036,8 +2044,8 @@ Transform:
   m_GameObject: {fileID: 1553430486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4853, y: 35.0782, z: 0}
-  m_LocalScale: {x: 23.084667, y: 0.7010688, z: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalScale: {x: 70, y: 0.7010688, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2291,8 +2299,8 @@ Transform:
   m_GameObject: {fileID: 1568495215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.8, y: 0.2644, z: 0}
-  m_LocalScale: {x: 1.3712, y: 5.323226, z: 1}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalScale: {x: 1.3712, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2910,11 +2918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1471567007269733192, guid: 6f4eadb8289fe49d2b9edd9da8486c34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.11
+      value: -18.2
       objectReference: {fileID: 0}
     - target: {fileID: 1471567007269733192, guid: 6f4eadb8289fe49d2b9edd9da8486c34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.48
+      value: -8.3
       objectReference: {fileID: 0}
     - target: {fileID: 1471567007269733192, guid: 6f4eadb8289fe49d2b9edd9da8486c34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3035,11 +3043,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 158760414554640838, guid: 3ca7f9dec6183974ba59571a5aea4f2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39
+      value: -35.9
       objectReference: {fileID: 0}
     - target: {fileID: 158760414554640838, guid: 3ca7f9dec6183974ba59571a5aea4f2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.9
+      value: 5.6
       objectReference: {fileID: 0}
     - target: {fileID: 158760414554640838, guid: 3ca7f9dec6183974ba59571a5aea4f2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3077,10 +3085,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGun
       objectReference: {fileID: 0}
-    - target: {fileID: 7411387418014434230, guid: 3ca7f9dec6183974ba59571a5aea4f2d, type: 3}
-      propertyPath: player_transform
-      value: 
-      objectReference: {fileID: 323285673}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3163,12 +3167,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3453016138311691151, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
-      propertyPath: player_transform
-      value: 
-      objectReference: {fileID: 323285673}
+      propertyPath: player_detect_distance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3453016138311691151, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
-      propertyPath: detonate_anim_time
-      value: 1.5
+      propertyPath: explode_player_distance
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4861251173159327048, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
       propertyPath: m_RootOrder
