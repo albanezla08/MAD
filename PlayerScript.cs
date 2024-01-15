@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     //base
     public Rigidbody2D body;
+    public SpriteRenderer sprite_renderer;
 
     //basic movement
     public Vector2 control_velocity;
@@ -46,6 +47,7 @@ public class PlayerScript : MonoBehaviour
         gm_script = GameObject.FindWithTag("game_manager").GetComponent<GameManagerScript>();
 
         //base
+        sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         gameObject.name = "Player";
         body.gravityScale = 0;
 
@@ -78,6 +80,11 @@ public class PlayerScript : MonoBehaviour
     {
         body.velocity = control_velocity;
         if (!hit_by_enemy) {
+            if (body.velocity.x > 0) {
+                sprite_renderer.flipX = true;
+            } else if (body.velocity.x < 0) {
+                sprite_renderer.flipX = false;
+            }
             //basic movement
             // control_velocity = po_script.check_overlap(control_velocity);
             

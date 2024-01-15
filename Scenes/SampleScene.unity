@@ -531,6 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm_script: {fileID: 0}
   body: {fileID: 323285671}
+  sprite_renderer: {fileID: 323285672}
   control_velocity: {x: 0, y: 0}
   active_movement_rate: 0
   base_movement_rate: 0
