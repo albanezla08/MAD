@@ -253,6 +253,7 @@ public class PlayerScript : MonoBehaviour
             bool added_weapon = weapon_queue_script.add_weapon(pickupIdentifier.get_weapon_prefab());
             queue_changed.Invoke(weapon_queue_script);
             if (added_weapon) {
+                audio_manager_script.play_clip("Pickup");
                 Destroy(col.gameObject);
             }
         }

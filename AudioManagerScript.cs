@@ -35,6 +35,7 @@ public class AudioManagerScript : MonoBehaviour
         }
         src.clip = sound.clip;
         src.volume = sound.volume;
+        src.pitch = sound.pitch;
         src.loop = sound.loop;
         src.Play();
         return src;

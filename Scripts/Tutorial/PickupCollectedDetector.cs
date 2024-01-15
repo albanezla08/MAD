@@ -36,6 +36,7 @@ public class PickupCollectedDetector : MonoBehaviour
         spawn_queued = true;
     }
     void spawn_pickup() {
-        Instantiate(pickup_prefab, transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(pickup_prefab, transform.position, Quaternion.identity);
+        obj.transform.parent = gameObject.transform;
     }
 }
