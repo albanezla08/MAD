@@ -930,7 +930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 549508978e8b87b4e880bcc573aa2263, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55e5d4ac8e3174c708a25ebc04631cc3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   - {fileID: 634533270}
   - {fileID: 2013898860}
   default_images:
-  - {fileID: 21300000, guid: 549508978e8b87b4e880bcc573aa2263, type: 3}
+  - {fileID: 21300000, guid: 55e5d4ac8e3174c708a25ebc04631cc3, type: 3}
   - {fileID: 21300000, guid: a3657250baa52f94392bc8abe34e9248, type: 3}
   - {fileID: 21300000, guid: f07e5472675db0d45aaa9b346979733d, type: 3}
   hearts:
