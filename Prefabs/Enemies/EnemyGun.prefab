@@ -115,14 +115,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 2
   chase_speed: 3
+  fall_speed: 2
   recovery_time: 3
-  player_detect_distance: 10
-  hp: 5
+  player_detect_distance: 40
+  hp: 3
   drop_prefab: {fileID: 6817155783786858861, guid: 9ce54fd78d49fe7488c12ecbd8ee573d, type: 3}
   death_event:
     m_PersistentCalls:
       m_Calls: []
-  shoot_at_player_range: 15
+  shoot_at_player_range: 25
   time_before_shooting: 2
   shoot_speed: 15
   shot_duration: 3

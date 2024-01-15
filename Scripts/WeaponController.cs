@@ -7,8 +7,9 @@ public class WeaponController : MonoBehaviour
     protected int next_weapons_count;
     protected WeaponsQueueController weapon_queue_script;
     protected Vector3 point_dir;
-    protected float fire_speed = 1f;
-    protected int damage = 1;
+    [SerializeField] protected float fire_speed = 1f;
+    [SerializeField] protected int damage = 1;
+    [SerializeField] protected float duration = 3f;
     protected GameObject firer;
     protected Rigidbody2D rb;
     protected bool set_to_destroy = false;

@@ -33,7 +33,7 @@ public class PlayerScript : MonoBehaviour
 
     //weapon
     private WeaponsQueueController weapon_queue_script;
-    private float fire_speed = 5f;
+    [SerializeField] private float fire_speed = 10f;
     //events for UI
     public UnityEvent<WeaponsQueueController> queue_changed;
     public UnityEvent<int> health_changed;
@@ -57,7 +57,7 @@ public class PlayerScript : MonoBehaviour
 
         //basic movement
         control_velocity = new Vector2(0.0f, 0.0f);
-        base_movement_rate = 30.0f * 0.7f;
+        base_movement_rate = 40.0f * 0.7f;
         active_movement_rate = base_movement_rate;
 
         //sprint

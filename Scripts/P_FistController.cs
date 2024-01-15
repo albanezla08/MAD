@@ -8,11 +8,11 @@ using UnityEngine;
 public class P_FistController : WeaponController
 {
     float current_time = 0f;
-    float max_time = 3f;
+    [SerializeField] float scale_up_factor = 0.5f;
     protected override void Start()
     {
         base.Start();
-        fire_speed = 5f;
+        // fire_speed = 5f;
         audio_manager_script.play_clip("Punch Throw");
     }
     void Update()
@@ -21,7 +21,7 @@ public class P_FistController : WeaponController
             return;
         }
         current_time += Time.deltaTime;
-        if (current_time >= max_time) {
+        if (current_time >= duration) {
             fire_next();
             StartCoroutine(delayed_destroy());
         }
@@ -36,7 +36,7 @@ public class P_FistController : WeaponController
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         Transform weapon_transform = weapon_object.transform;
-        weapon_transform.localScale = transform.localScale + new Vector3(1, 1, 0) * 0.5f;
+        weapon_transform.localScale = transform.localScale + new Vector3(1, 1, 0) * scale_up_factor;
         weapon_body.velocity = rb.velocity + (Vector2)(point_dir * fire_speed);
         weapon_script.initialize(2, weapon_queue_script, point_dir, firer);
     }

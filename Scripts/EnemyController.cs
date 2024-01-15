@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] protected float player_detect_distance = 10f;
     [SerializeField] protected int hp = 5;
     [SerializeField] protected GameObject drop_prefab;
+    protected bool is_dead = false;
     protected float fall_time;
     protected SpriteRenderer exclamation_renderer;
     protected SpriteRenderer stars_renderer;
@@ -80,6 +81,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     void die() {
+        if (is_dead) {
+            return;
+        }
+        is_dead = true;
         death_event.Invoke();
         Instantiate(drop_prefab, transform.position, Quaternion.identity);
         Destroy(gameObject);

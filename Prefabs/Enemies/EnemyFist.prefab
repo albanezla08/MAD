@@ -321,10 +321,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 2
   chase_speed: 3
+  fall_speed: 2
   recovery_time: 3
-  player_detect_distance: 10
-  hp: 5
+  player_detect_distance: 20
+  hp: 3
   drop_prefab: {fileID: 1732911354077527272, guid: c67edb7f5d4bdf646bd8a4273e09e92f, type: 3}
+  death_event:
+    m_PersistentCalls:
+      m_Calls: []
   must_have_hit_range: 0
 --- !u!70 &7081077464899632368
 CapsuleCollider2D:

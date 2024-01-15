@@ -5,11 +5,10 @@ using UnityEngine;
 public class P_GunController : WeaponController
 {
     float current_time = 0f;
-    float max_time = 1f;
     protected override void Start()
     {
         base.Start();
-        fire_speed = 10f;
+        // fire_speed = 10f;
         // audio_manager_script.play_clip("Punch Throw");
     }
     void Update()
@@ -18,7 +17,7 @@ public class P_GunController : WeaponController
             return;
         }
         current_time += Time.deltaTime;
-        if (current_time >= max_time) {
+        if (current_time >= duration) {
             fire_next();
             StartCoroutine(delayed_destroy());
         }

@@ -39,15 +39,16 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!is_tutorial) {
-            AudioSource intro_src = audio_manager_script.play_clip("Intro");
-            StartCoroutine(play_loop_after_intro(intro_src));
-        }
         boundary = 90.0f;
         radius_to_player = 30.0f;
         spawn_time = 4.0f;
         spawn_timer = 0.0f;
         difficulty_lvl = 0;
+        if (!is_tutorial) {
+            AudioSource intro_src = audio_manager_script.play_clip("Intro");
+            StartCoroutine(play_loop_after_intro(intro_src));
+            spawn_enemy();
+        }
     }
 
     // Update is called once per frame
@@ -73,6 +74,10 @@ public class GameManagerScript : MonoBehaviour
     }
 
     public Vector3 get_pos_close_to_player() {
+        return get_pos_close_to_player_helper(3);
+    }
+
+    Vector3 get_pos_close_to_player_helper(int attempts) {
         Vector3 pos_away_from_player;
         pos_away_from_player = new Vector3(Random.Range(-boundary, boundary), Random.Range(-boundary, boundary), 0);
         float x = pos_away_from_player.x;
@@ -82,10 +87,17 @@ public class GameManagerScript : MonoBehaviour
         x -= player_x;
         y -= player_y;
         //radius can't be bigger than 50
-        if (x*x + y*y > radius_to_player*radius_to_player && x*x + y*y < 3600) {
-            return pos_away_from_player;
+        // if (x*x + y*y > radius_to_player*radius_to_player && x*x + y*y < 3600) {
+        //     return pos_away_from_player;
+        // } else {
+        //     return get_pos_close_to_player_helper(attempts - 1);
+        // }
+
+        // make enemies spawn farther away
+        if (Vector2.Distance(pos_away_from_player, player.transform.position) < 15 && attempts > 0) {
+            return get_pos_close_to_player_helper(attempts - 1);
         } else {
-            return get_pos_close_to_player();
+            return pos_away_from_player;
         }
     }
 

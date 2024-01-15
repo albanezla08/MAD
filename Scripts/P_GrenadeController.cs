@@ -9,11 +9,10 @@ public class GrenadeController : WeaponController
 {
     [SerializeField] private float num_shrapnel;
     float current_time = 0f;
-    float max_time = 3f;
     protected override void Start()
     {
         base.Start();
-        fire_speed = 5f;
+        // fire_speed = 5f;
         audio_manager_script.play_clip("Grenade Throw");
     }
     void Update()
@@ -22,7 +21,7 @@ public class GrenadeController : WeaponController
             return;
         }
         current_time += Time.deltaTime;
-        if (current_time >= max_time) {
+        if (current_time >= duration) {
             fire_next();
             StartCoroutine(delayed_destroy());
         }
