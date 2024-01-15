@@ -2371,10 +2371,6 @@ PrefabInstance:
       propertyPath: player_transform
       value: 
       objectReference: {fileID: 323285673}
-    - target: {fileID: 4273255887030038716, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4861251173159327048, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.5
@@ -2419,8 +2415,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGrenade
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6085069430195322844, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

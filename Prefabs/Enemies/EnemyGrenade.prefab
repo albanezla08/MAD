@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 7222501124520447228}
   - component: {fileID: 7671638513875094534}
   - component: {fileID: 3453016138311691151}
-  - component: {fileID: 6085069430195322844}
   - component: {fileID: 8063285229641276241}
-  - component: {fileID: 4273255887030038716}
   m_Layer: 7
   m_Name: EnemyGrenade
   m_TagString: GrenadeParent
@@ -137,25 +135,6 @@ MonoBehaviour:
   FireRingSpawner: {fileID: 7837318002754000158, guid: f62e0a3adcfde445e9312a8d6e6da912, type: 3}
   EnemyGrenadeChild: {fileID: 1631870731605574246, guid: 7170aedc41341421a925ea39019f989a, type: 3}
   explode_player_distance: 5
---- !u!114 &6085069430195322844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297969467272001317}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e53bf92c77e27406fa8c2b3abc34c502, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyGrenadeChild: {fileID: 1631870731605574246, guid: 7170aedc41341421a925ea39019f989a, type: 3}
-  player_script: {fileID: 0}
-  child_script: {fileID: 0}
-  FireRingSpawner: {fileID: 7837318002754000158, guid: f62e0a3adcfde445e9312a8d6e6da912, type: 3}
-  child_dir: 0
-  body: {fileID: 7671638513875094534}
-  speed: 0
 --- !u!70 &8063285229641276241
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -191,38 +170,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.008153439, y: -0.098294735}
   m_Size: {x: 3.1692152, y: 3.1692152}
   m_Direction: 0
---- !u!58 &4273255887030038716
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297969467272001317}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.11788559, y: 0}
-  serializedVersion: 2
-  m_Radius: 7.017418

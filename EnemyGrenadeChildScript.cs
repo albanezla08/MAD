@@ -20,8 +20,8 @@ public class EnemyGrenadeChildScript : MonoBehaviour
         life_timer = 0.0f;
         movement_control = transform.position;
         movement_speed = 30.0f;
-        parent_script = GameObject.FindWithTag("GrenadeParent").GetComponent<EnemyGrenadeScript>();
-        dir = parent_script.get_child_dir();
+        // parent_script = GameObject.FindWithTag("GrenadeParent").GetComponent<EnemyGrenadeScript>();
+        // dir = parent_script.get_child_dir();
 
     }
 
