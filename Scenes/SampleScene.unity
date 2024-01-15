@@ -868,6 +868,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  own_animator: {fileID: 323285676}
   hp: 3
 --- !u!114 &323285675
 MonoBehaviour:

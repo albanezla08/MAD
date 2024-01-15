@@ -34,11 +34,11 @@ public class PlayerScript : MonoBehaviour
     //weapon
     private WeaponsQueueController weapon_queue_script;
     private float fire_speed = 5f;
-    //collision/movement
-    private PreventOverlap po_script;
     //events for UI
     public UnityEvent<WeaponsQueueController> queue_changed;
     public UnityEvent<int> health_changed;
+    //animations
+    public Animator own_animator;
     //health
     [SerializeField] int hp = 3;
 
@@ -49,6 +49,7 @@ public class PlayerScript : MonoBehaviour
 
         //base
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
+        own_animator = gameObject.GetComponent<Animator>();
         gameObject.name = "Player";
         body.gravityScale = 0;
 
@@ -65,9 +66,6 @@ public class PlayerScript : MonoBehaviour
         //weapons
         weapon_queue_script = gameObject.GetComponent<WeaponsQueueController>();
         queue_changed.Invoke(weapon_queue_script);
-
-        //collision/movement
-        po_script = gameObject.GetComponent<PreventOverlap>();
 
         hit_by_enemy = false;
         hit_timer = 0.0f;
@@ -86,6 +84,7 @@ public class PlayerScript : MonoBehaviour
             } else if (body.velocity.x < 0) {
                 sprite_renderer.flipX = false;
             }
+            own_animator.SetBool("isWalking", body.velocity.magnitude > 0.01);
             //basic movement
             // control_velocity = po_script.check_overlap(control_velocity);
             
@@ -220,6 +219,7 @@ public class PlayerScript : MonoBehaviour
 
     //weapon functions
     private void fire_weapon() {
+        own_animator.SetTrigger("Attack");
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         queue_changed.Invoke(weapon_queue_script);
         if (next_weapon_prefab == null) {
