@@ -529,6 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1992c1eff30b43d7b95e1aa0b3a825e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm_script: {fileID: 0}
   body: {fileID: 323285671}
   control_velocity: {x: 0, y: 0}
   active_movement_rate: 0
@@ -872,7 +873,7 @@ GameObject:
   - component: {fileID: 1294546159}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: game_manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -944,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0ebc3f5b1059040a0f91faadb2ff5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 323285669}
   audio_manager_script: {fileID: 1705282710}
 --- !u!1 &1527283136
 GameObject:

@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
+    public GameManagerScript gm_script;
+
     //base
     public Rigidbody2D body;
 
@@ -41,6 +43,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm_script = GameObject.FindWithTag("game_manager").GetComponent<GameManagerScript>();
 
         //base
         gameObject.name = "Player";
@@ -250,7 +253,8 @@ public class PlayerScript : MonoBehaviour
             hit_dir = transform.position - col.transform.position;
             hp--;
             if (hp <= 0) {
-                Destroy(gameObject);
+                //SET INACTIVE
+                //Destroy(gameObject);
             }
         }
     }
