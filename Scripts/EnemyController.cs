@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     protected float fall_time;
     protected SpriteRenderer exclamation_renderer;
     protected SpriteRenderer stars_renderer;
+    // used to make sure scaling difficulty speed is reflected in wander speed
+    float wander_speed_refresh_time = 6f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +28,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         exclamation_renderer = transform.Find("Exclamation").GetComponent<SpriteRenderer>();
         stars_renderer = transform.Find("Stars").GetComponent<SpriteRenderer>();
-        wander_state = new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer);
-        state_machine.change_state(wander_state);
+        state_machine.change_state(new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer, wander_speed_refresh_time, change_to_wander));
     }
 
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     void change_to_wander() {
-        state_machine.change_state(wander_state);
+        state_machine.change_state(new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer, wander_speed_refresh_time, change_to_wander));
     }
 
     protected virtual void change_to_chase() {
