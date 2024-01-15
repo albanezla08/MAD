@@ -11,6 +11,7 @@ public class P_GunController : WeaponController
     {
         base.Start();
         fire_speed = 10f;
+        // audio_manager_script.play_clip("Punch Throw");
     }
     void Update()
     {
@@ -26,6 +27,7 @@ public class P_GunController : WeaponController
 
     protected override void fire_next()
     {
+        audio_manager_script.play_clip("Gun Shoot");
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         if (next_weapon_prefab == null) {
             // Debug.Log("nothing to shoot");

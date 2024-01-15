@@ -13,6 +13,7 @@ public class P_FistController : WeaponController
     {
         base.Start();
         fire_speed = 5f;
+        audio_manager_script.play_clip("Punch Throw");
     }
     void Update()
     {

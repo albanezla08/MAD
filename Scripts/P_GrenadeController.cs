@@ -14,6 +14,7 @@ public class GrenadeController : WeaponController
     {
         base.Start();
         fire_speed = 5f;
+        audio_manager_script.play_clip("Grenade Throw");
     }
     void Update()
     {
@@ -27,6 +28,7 @@ public class GrenadeController : WeaponController
         }
     }
     protected override void fire_next() {
+        audio_manager_script.play_clip("Grenade Explode");
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         if (next_weapon_prefab == null) {
             // Debug.Log("nothing to shoot");

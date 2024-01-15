@@ -10,6 +10,7 @@ public class Sound
     public AudioClip clip;
     public float volume = 0.5f;
     public bool loop;
+    public AudioSource audio_src;
 }
 
 public class AudioManagerScript : MonoBehaviour
@@ -20,10 +21,12 @@ public class AudioManagerScript : MonoBehaviour
     {
         for (int i = 0; i < sounds.Length; i++) {
             sounds_dict.Add(sounds[i].name, sounds[i]);
+            AudioSource src = gameObject.AddComponent<AudioSource>();
+            sounds[i].audio_src = src;
         }
     }
     public AudioSource play_clip(string name) {
-        AudioSource src = gameObject.AddComponent<AudioSource>();
+        AudioSource src = sounds_dict[name].audio_src;
         Sound sound = sounds_dict[name];
         if (sound == null) {
             Debug.Log("sound does not exist");
