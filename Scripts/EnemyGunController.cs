@@ -11,7 +11,7 @@ public class EnemyGunController : EnemyController
     [SerializeField] float shot_duration = 3f;
     protected override void change_to_chase()
     {
-        state_machine.change_state(new ChaseState(rb, chase_speed, change_to_aiming, transform, player_transform, shoot_at_player_range));
+        state_machine.change_state(new ChaseState(rb, chase_speed, change_to_aiming, transform, player_transform, shoot_at_player_range, sprite_renderer));
     }
 
     void change_to_aiming()

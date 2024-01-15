@@ -14,13 +14,15 @@ public class WanderState : IState
     Action on_player_detect;
     Transform transform, player_transform;
     float player_detect_distance;
-    public WanderState(Rigidbody2D rb, float mv_spd, Action on_player_detect, Transform own_tr, Transform player_tr, float player_detect_distance) {
+    SpriteRenderer sprite_renderer;
+    public WanderState(Rigidbody2D rb, float mv_spd, Action on_player_detect, Transform own_tr, Transform player_tr, float player_detect_distance, SpriteRenderer sr) {
         this.rb = rb;
         move_speed = mv_spd;
         this.on_player_detect = on_player_detect;
         transform = own_tr;
         player_transform = player_tr;
         this.player_detect_distance = player_detect_distance;
+        sprite_renderer = sr;
     }
     void IState.enter()
     {
@@ -32,7 +34,13 @@ public class WanderState : IState
     {
         wander_logic();
 
-        rb.velocity = dir_to_choose * move_speed;
+        Vector2 new_vel = dir_to_choose * move_speed;
+        rb.velocity = new_vel;
+        if (new_vel.x > 0) {
+            sprite_renderer.flipX = false;
+        } else if (new_vel.x < 0) {
+            sprite_renderer.flipX = true;
+        }
         if (Vector2.Distance(transform.position, player_transform.position) < player_detect_distance) {
             on_player_detect();
         }

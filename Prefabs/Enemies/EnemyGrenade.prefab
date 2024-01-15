@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b89ae801168640aa5a36bc922e8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_transform: {fileID: 0}
   move_speed: 2
   chase_speed: 3
   recovery_time: 1
@@ -167,6 +166,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008153439, y: -0.098294735}
-  m_Size: {x: 3.1692152, y: 3.1692152}
+  m_Offset: {x: 0.019903183, y: -0.4378686}
+  m_Size: {x: 5.6456184, y: 5.924263}
   m_Direction: 0

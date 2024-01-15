@@ -17,16 +17,19 @@ public class GrenadeController : WeaponController
     }
     void Update()
     {
+        if (set_to_destroy) {
+            return;
+        }
         current_time += Time.deltaTime;
         if (current_time >= max_time) {
             fire_next();
-            Destroy(gameObject);
+            StartCoroutine(delayed_destroy());
         }
     }
     protected override void fire_next() {
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         if (next_weapon_prefab == null) {
-            Debug.Log("nothing to shoot");
+            // Debug.Log("nothing to shoot");
             return;
         }
         for (int i = 0; i < num_shrapnel; i++) {
@@ -37,7 +40,8 @@ public class GrenadeController : WeaponController
             weapon_transform.localScale = transform.localScale;
             Quaternion rotate_amount = Quaternion.Euler(0, 0, -(360 / num_shrapnel) * i);
             Vector3 new_point_dir = rotate_amount * point_dir;
-            weapon_body.velocity = rb.velocity + (Vector2)(new_point_dir * fire_speed);
+            Vector2 adjusted_velocity = rotate_amount * rb.velocity;
+            weapon_body.velocity = adjusted_velocity + (Vector2)(new_point_dir * fire_speed);
             // The commented out line leads to unintended and kind of unintuitive behavior
             // but it's interesting behavior that I think adds a more interesting choice in using a gun
             // weapon_script.initialize(2, weapon_queue_script, point_dir);

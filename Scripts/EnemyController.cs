@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     protected IState wander_state;
     protected Rigidbody2D rb;
     protected Transform player_transform;
+    protected SpriteRenderer sprite_renderer;
     [SerializeField] protected float move_speed = 2f;
     [SerializeField] protected float chase_speed = 3f;
     [SerializeField] protected float recovery_time;
@@ -19,7 +20,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         player_transform = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        wander_state = new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance);
+        sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
+        wander_state = new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer);
         state_machine.change_state(wander_state);
     }
 
@@ -38,7 +40,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     protected virtual void change_to_chase() {
-        state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance));
+        state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance, sprite_renderer));
     }
 
     void IDamageable.on_hit(int damage, Vector3 direction) {

@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
     private PreventOverlap po_script;
     //events for UI
     public UnityEvent<WeaponsQueueController> queue_changed;
+    public UnityEvent<int> health_changed;
     //health
     [SerializeField] int hp = 3;
 
@@ -259,6 +260,7 @@ public class PlayerScript : MonoBehaviour
             hit_timer = 0.0f;
             hit_dir = transform.position - col.transform.position;
             hp--;
+            health_changed.Invoke(hp);
             if (hp <= 0) {
                 gm_script.game_over();
             }

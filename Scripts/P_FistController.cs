@@ -16,16 +16,19 @@ public class P_FistController : WeaponController
     }
     void Update()
     {
+        if (set_to_destroy) {
+            return;
+        }
         current_time += Time.deltaTime;
         if (current_time >= max_time) {
             fire_next();
-            Destroy(gameObject);
+            StartCoroutine(delayed_destroy());
         }
     }
     protected override void fire_next() {
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         if (next_weapon_prefab == null) {
-            Debug.Log("nothing to shoot");
+            // Debug.Log("nothing to shoot");
             return;
         }
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);

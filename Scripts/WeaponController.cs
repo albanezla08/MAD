@@ -11,12 +11,14 @@ public class WeaponController : MonoBehaviour
     protected int damage = 1;
     protected GameObject firer;
     protected Rigidbody2D rb;
+    protected bool set_to_destroy = false;
+    protected AudioManagerScript audio_manager_script;
     protected virtual void Start()
     {
         // CircleCollider2D ownCollider = gameObject.GetComponent<CircleCollider2D>();
         // Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, ownCollider.radius);
         rb = gameObject.GetComponent<Rigidbody2D>();
-        
+        audio_manager_script = FindObjectOfType<AudioManagerScript>();
     }
     public void initialize(int count, WeaponsQueueController source_queue, Vector3 direction, GameObject owner) {
         next_weapons_count = count;
@@ -32,8 +34,10 @@ public class WeaponController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (set_to_destroy) {
+            return;
+        }
         MonoBehaviour[] monoBehaviours = col.GetComponents<MonoBehaviour>();
-        Debug.Log(monoBehaviours[0]);
         for (int i = 0; i < monoBehaviours.Length; i++) {
             if (monoBehaviours[i].gameObject == firer) {
                 continue;
@@ -42,13 +46,26 @@ public class WeaponController : MonoBehaviour
                 IDamageable script = (IDamageable)monoBehaviours[i];
                 script.on_hit(damage, point_dir);
                 fire_next();
-                Destroy(gameObject);
+                audio_manager_script.play_clip("Enemy Hit");
+                StartCoroutine(delayed_destroy());
                 break;
-            } else if (monoBehaviours[i].gameObject.layer == LayerMask.NameToLayer("Takes Space")) {
-                Destroy(gameObject);
+            } else if (monoBehaviours[i].gameObject.layer == LayerMask.NameToLayer("Projectiles")) {
+                StartCoroutine(delayed_destroy());
                 fire_next();
                 break;
             }
+        }
+    }
+
+    protected IEnumerator delayed_destroy() {
+        if (set_to_destroy) {
+            yield break;
+        }
+        set_to_destroy = true;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        if (gameObject != null) {
+            Destroy(gameObject);
         }
     }
 }

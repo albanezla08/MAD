@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 271b0820262ba29458eb7a6d58ce9860, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19392c33f4c3c4d0193c61f127e5ede6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3490149540984310244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 2
   chase_speed: 3
-  recovery_time: 0
+  recovery_time: 3
   player_detect_distance: 10
   hp: 5
   must_have_hit_range: 0
@@ -164,6 +164,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2, y: 2}
-  m_Direction: 0
+  m_Offset: {x: -0.2708593, y: -0.18960331}
+  m_Size: {x: 7.9583063, y: 4.4372373}
+  m_Direction: 1

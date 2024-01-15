@@ -8,7 +8,7 @@ public class EnemyGrenadeController : EnemyController
     public GameObject EnemyGrenadeChild;
     [SerializeField] float explode_player_distance = 5f;
     protected override void change_to_chase() {
-        state_machine.change_state(new ChaseState(rb, chase_speed, detonate, transform, player_transform, explode_player_distance));
+        state_machine.change_state(new ChaseState(rb, chase_speed, detonate, transform, player_transform, explode_player_distance, sprite_renderer));
     }
     void detonate() {
         Instantiate(FireRingSpawner, transform.position, transform.rotation);
