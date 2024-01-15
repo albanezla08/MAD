@@ -14,7 +14,7 @@ public class P_WeaponsSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        max_spawn_time = 3.0f; //Random.Range(max_spawn_time_range.x, max_spawn_time_range.y);
+        max_spawn_time = 2.0f; //Random.Range(max_spawn_time_range.x, max_spawn_time_range.y);
     }
 
     // Update is called once per frame
