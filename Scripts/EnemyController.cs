@@ -20,7 +20,6 @@ public class EnemyController : MonoBehaviour, IDamageable
         rb = gameObject.GetComponent<Rigidbody2D>();
         wander_state = new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance);
         state_machine.change_state(wander_state);
-        Debug.Log("in start");
     }
 
     // Update is called once per frame
@@ -35,12 +34,10 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     void change_to_wander() {
         state_machine.change_state(wander_state);
-        Debug.Log("change to wander");
     }
 
     protected virtual void change_to_chase() {
         state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance));
-        Debug.Log("change to chase");
     }
 
     void IDamageable.on_hit(int damage, Vector3 direction) {
