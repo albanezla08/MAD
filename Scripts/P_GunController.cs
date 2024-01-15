@@ -31,7 +31,9 @@ public class P_GunController : WeaponController
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
-        weapon_body.velocity = point_dir * fire_speed;
+        Transform weapon_transform = weapon_object.transform;
+        weapon_transform.localScale = transform.localScale;
+        weapon_body.velocity = rb.velocity + (Vector2)(point_dir * fire_speed);
         weapon_script.initialize(2, weapon_queue_script, point_dir, firer);
     }
 }

@@ -10,13 +10,13 @@ public class WeaponController : MonoBehaviour
     protected float fire_speed = 1f;
     protected int damage = 1;
     protected GameObject firer;
+    protected Rigidbody2D rb;
     protected virtual void Start()
     {
-        CircleCollider2D ownCollider = gameObject.GetComponent<CircleCollider2D>();
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, ownCollider.radius);
-        Debug.Log("into hit colldiers");
-        Debug.Log(hitColliders.Length);
-        Debug.Log("out of hit colldiers");
+        // CircleCollider2D ownCollider = gameObject.GetComponent<CircleCollider2D>();
+        // Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, ownCollider.radius);
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        
     }
     public void initialize(int count, WeaponsQueueController source_queue, Vector3 direction, GameObject owner) {
         next_weapons_count = count;

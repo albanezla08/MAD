@@ -32,8 +32,8 @@ public class P_FistController : WeaponController
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         Transform weapon_transform = weapon_object.transform;
-        weapon_transform.localScale *= 1.5f;
-        weapon_body.velocity = point_dir * fire_speed;
+        weapon_transform.localScale = transform.localScale + new Vector3(1, 1, 0) * 0.5f;
+        weapon_body.velocity = rb.velocity + (Vector2)(point_dir * fire_speed);
         weapon_script.initialize(2, weapon_queue_script, point_dir, firer);
     }
 }
