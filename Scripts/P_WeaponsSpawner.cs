@@ -5,16 +5,16 @@ using UnityEngine;
 public class P_WeaponsSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] pickup_options;
-    [SerializeField] private Vector3 bottom_left_bound = new Vector3(-55, -25, 0);
-    [SerializeField] private Vector3 top_right_bound = new Vector3(55, 25, 0);
-    [SerializeField] Vector2 max_spawn_time_range = new Vector2(1.5f, 3f);
-    [SerializeField] float min_distance_from_colliders = 0.5f;
-    float max_spawn_time;
-    float curr_spawn_time = 0f;
+    public Vector3 bottom_left_bound = new Vector3(-90, -90, 0);
+    public Vector3 top_right_bound = new Vector3(90, 90, 0);
+    public Vector2 max_spawn_time_range = new Vector2(1.5f, 3f);
+    public float min_distance_from_colliders = 0.5f;
+    public float max_spawn_time;
+    public float curr_spawn_time = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        max_spawn_time = Random.Range(max_spawn_time_range.x, max_spawn_time_range.y);
+        max_spawn_time = 3.0f; //Random.Range(max_spawn_time_range.x, max_spawn_time_range.y);
     }
 
     // Update is called once per frame
