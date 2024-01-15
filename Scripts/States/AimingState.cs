@@ -25,6 +25,7 @@ public class AimingState : IState
         // Vector2 dir = player_transform.position - transform.position;
         // dir = dir.normalized;
         // rb.velocity = dir * chase_speed;
+        rb.velocity = Vector2.zero;
     }
 
     void IState.execute()

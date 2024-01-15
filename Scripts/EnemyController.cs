@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Security;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IDamageable
@@ -15,12 +16,14 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] protected float player_detect_distance = 10f;
     [SerializeField] protected int hp = 5;
     protected float fall_time;
+    protected SpriteRenderer exclamation_renderer;
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         player_transform = GameObject.FindWithTag("Player").GetComponent<Transform>();
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
+        exclamation_renderer = transform.Find("Exclamation").GetComponent<SpriteRenderer>();
         wander_state = new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer);
         state_machine.change_state(wander_state);
     }
@@ -40,7 +43,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     protected virtual void change_to_chase() {
-        state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance, sprite_renderer));
+        state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance, sprite_renderer, exclamation_renderer));
     }
 
     void IDamageable.on_hit(int damage, Vector3 direction) {
