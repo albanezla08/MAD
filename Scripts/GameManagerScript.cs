@@ -22,7 +22,7 @@ public class GameManagerScript : MonoBehaviour
     public float spawn_timer;
     public float difficulty_lvl;
     private bool is_game_over;
-
+    public bool is_tutorial = false;
     public void game_over() {
         is_game_over = true;
         player.SetActive(false);
@@ -39,9 +39,10 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        AudioSource intro_src = audio_manager_script.play_clip("Intro");
-        StartCoroutine(play_loop_after_intro(intro_src));
+        if (!is_tutorial) {
+            AudioSource intro_src = audio_manager_script.play_clip("Intro");
+            StartCoroutine(play_loop_after_intro(intro_src));
+        }
         boundary = 90.0f;
         radius_to_player = 30.0f;
         spawn_time = 4.0f;
@@ -52,7 +53,7 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_game_over) {
+        if (is_game_over || is_tutorial) {
             return;
         }
         if (spawn_timer < spawn_time) {
@@ -123,6 +124,10 @@ public class GameManagerScript : MonoBehaviour
         if (spawn_time > 1.8f) {
             spawn_time -= 0.15f;
         }
+    }
+
+    public void show_need_weapon() {
+        ui_manager.show_need_weapon();
     }
 
 }
