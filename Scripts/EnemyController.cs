@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     protected SpriteRenderer sprite_renderer;
     [SerializeField] protected float move_speed = 2f;
     [SerializeField] protected float chase_speed = 3f;
+    [SerializeField] protected float fall_speed = 2f;
     [SerializeField] protected float recovery_time;
     [SerializeField] protected float player_detect_distance = 10f;
     [SerializeField] protected int hp = 5;
@@ -62,7 +63,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
         fall_time = 1.5f;
 
-        state_machine.change_state(new FallingState(rb, move_speed, direction, fall_time, change_to_recovery));
+        state_machine.change_state(new FallingState(rb, fall_speed, direction, fall_time, change_to_recovery));
     }
 
     void OnCollisionEnter2D(Collision2D col) {

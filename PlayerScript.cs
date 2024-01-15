@@ -224,12 +224,12 @@ public class PlayerScript : MonoBehaviour
         GameObject next_weapon_prefab = weapon_queue_script.pop_next_weapon();
         queue_changed.Invoke(weapon_queue_script);
         if (next_weapon_prefab == null) {
-            own_animator.SetTrigger("Attack");
             audio_manager_script.play_clip("Empty Shoot");
             gm_script.show_need_weapon();
             // Debug.Log("nothing to shoot");
             return;
         }
+        own_animator.SetTrigger("Attack");
         GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
