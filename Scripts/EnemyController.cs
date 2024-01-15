@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     float wander_speed_refresh_time = 6f;
     public UnityEvent death_event;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         GameObject gm = GameObject.Find("GameManager");
         gm.GetComponent<GameManagerScript>().difficulty_event.AddListener(incr_speeds);

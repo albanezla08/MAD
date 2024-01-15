@@ -12,13 +12,15 @@ public class AimingState : IState
     float timer;
     float shoot_speed;
     Action on_done;
-    public AimingState(Rigidbody2D rb, Transform own_tr, Transform player_tr, float max_time, float shoot_speed, Action change_to_falling) {
+    GameObject arrow_object;
+    public AimingState(Rigidbody2D rb, Transform own_tr, Transform player_tr, float max_time, float shoot_speed, Action change_to_falling, GameObject arrow) {
         this.rb = rb;
         transform = own_tr;
         player_transform = player_tr;
         this.max_time = max_time;
         this.shoot_speed = shoot_speed;
         on_done = change_to_falling;
+        arrow_object = arrow;
     }
     void IState.enter()
     {
@@ -26,6 +28,7 @@ public class AimingState : IState
         // dir = dir.normalized;
         // rb.velocity = dir * chase_speed;
         rb.velocity = Vector2.zero;
+        arrow_object.SetActive(true);
     }
 
     void IState.execute()
@@ -61,6 +64,6 @@ public class AimingState : IState
 
     void IState.exit()
     {
-
+        arrow_object.SetActive(false);
     }
 }

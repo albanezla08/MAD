@@ -9,6 +9,13 @@ public class EnemyGunController : EnemyController
     [SerializeField] float time_before_shooting = 2f;
     [SerializeField] float shoot_speed = 5f;
     [SerializeField] float shot_duration = 3f;
+    private GameObject arrow_object;
+    protected override void Start()
+    {
+        base.Start();
+        arrow_object = transform.Find("Arrow").gameObject;
+        arrow_object.GetComponent<RotateTowards>().target = GameObject.Find("Player").transform;
+    }
     protected override void change_to_chase()
     {
         state_machine.change_state(new ChaseState(rb, chase_speed, change_to_aiming, transform, player_transform, shoot_at_player_range, sprite_renderer, exclamation_renderer, change_to_wander));
@@ -16,7 +23,7 @@ public class EnemyGunController : EnemyController
 
     void change_to_aiming()
     {
-        state_machine.change_state(new AimingState(rb, transform, player_transform, time_before_shooting, shoot_speed, change_to_falling));
+        state_machine.change_state(new AimingState(rb, transform, player_transform, time_before_shooting, shoot_speed, change_to_falling, arrow_object));
     }
 
     void change_to_falling()
