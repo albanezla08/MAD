@@ -13,8 +13,9 @@ public class GameManagerScript : MonoBehaviour
     public GameObject fist;
     public GameObject gun;
     public GameObject bomb;
-    private int score;
-    [SerializeField] private int score_increment;
+    [SerializeField] private UIManager ui_manager;
+    private int score = 0;
+    [SerializeField] private int score_increment = 10;
     public float boundary;
     public float radius_to_player;
     public float spawn_time;
@@ -102,6 +103,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void incr_score() {
         score += score_increment;
+        ui_manager.update_score(score);
     }
 
     public void incr_difficulty() {

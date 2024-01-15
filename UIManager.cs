@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image[] weapon_slots;
     [SerializeField] Sprite[] default_images;
     [SerializeField] Image[] hearts;
+    [SerializeField] Text score;
     public void update_queue(WeaponsQueueController src_script) {
         GameObject[] queue = src_script.get_queue();
         for (int i = 0; i < queue.Length; i++) {
@@ -23,5 +24,9 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < hearts.Length; i++) {
             hearts[i].enabled = i < remaining;
         }
+    }
+
+    public void update_score(int score) {
+        this.score.text = score.ToString();
     }
 }
