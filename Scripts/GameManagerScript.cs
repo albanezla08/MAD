@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public EnemyController enemy_controller_script;
+    public UnityEvent difficulty_event;
     public GameObject game_over_screen;
     public GameObject player;
     public GameObject fist;
@@ -33,7 +34,7 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy_controller_script = GameObject.Find("EnemyFist").GetComponent<EnemyController>();
+        
         AudioSource intro_src = audio_manager_script.play_clip("Intro");
         StartCoroutine(play_loop_after_intro(intro_src));
         boundary = 90.0f;
@@ -53,6 +54,7 @@ public class GameManagerScript : MonoBehaviour
             incr_difficulty();
             spawn_timer = 0.0f;
         }
+
     }
     IEnumerator play_loop_after_intro(AudioSource intro_src) {
         while (intro_src.isPlaying) {
@@ -98,8 +100,7 @@ public class GameManagerScript : MonoBehaviour
         //modify detection distances for enemies to be bigger
         //modify enemy speeds to be faster
         //
-        enemy_controller_script.incr_speeds();
-        enemy_controller_script.incr_player_detector();
+        difficulty_event.Invoke();
         if (radius_to_player > 12.0f) {
             radius_to_player -= 1.0f;
         }

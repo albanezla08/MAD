@@ -23,6 +23,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gm = GameObject.Find("GameManager");
+        gm.GetComponent<GameManagerScript>().difficulty_event.AddListener(incr_speeds);
         rb = gameObject.GetComponent<Rigidbody2D>();
         player_transform = GameObject.FindWithTag("Player").GetComponent<Transform>();
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -73,9 +75,12 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void incr_player_detector() {
         player_detect_distance += 1f;
+        move_speed += 0.25f;
+        chase_speed += 0.25f;
     }
 
     public void incr_speeds() {
+        player_detect_distance += 1f;
         move_speed += 0.25f;
         chase_speed += 0.25f;
     }
