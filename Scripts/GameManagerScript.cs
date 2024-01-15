@@ -23,10 +23,14 @@ public class GameManagerScript : MonoBehaviour
     public float difficulty_lvl;
     private bool is_game_over;
     public bool is_tutorial = false;
+    public bool is_paused = false;
+    [SerializeField] GameObject pause_panel;
     public void game_over() {
         is_game_over = true;
         player.SetActive(false);
         game_over_screen.SetActive(true);
+        audio_manager_script.stop_clip("Intro");
+        audio_manager_script.stop_clip("Loop");
     }
 
     public void restart_game() {
@@ -34,6 +38,18 @@ public class GameManagerScript : MonoBehaviour
         //Then drop the game object with this script (not the script) in the event in the button, then select a function
         //for it to perform on click. In this case, we want to select this function
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void pause_game() {
+        pause_panel.SetActive(true);
+        is_paused = true;
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+    }
+    public void resume_game() {
+        pause_panel.SetActive(false);
+        is_paused = false;
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
     }
     [SerializeField] AudioManagerScript audio_manager_script;
     // Start is called before the first frame update
@@ -54,7 +70,17 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_game_over || is_tutorial) {
+        if (is_game_over) {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (is_paused) {
+                resume_game();
+            } else {
+                pause_game();
+            }
+        }
+        if (is_tutorial) {
             return;
         }
         if (spawn_timer < spawn_time) {
@@ -70,7 +96,22 @@ public class GameManagerScript : MonoBehaviour
         while (intro_src.isPlaying) {
             yield return null;
         }
+        if (is_game_over) {
+            yield break;
+        }
         audio_manager_script.play_clip("Loop");
+        StartCoroutine(make_sure_intro_isnt_playing(intro_src));
+    }
+
+    IEnumerator make_sure_intro_isnt_playing(AudioSource intro_src) {
+        while (true) {
+            if (intro_src.isPlaying) {
+                audio_manager_script.stop_clip("Loop");
+                StartCoroutine(play_loop_after_intro(intro_src));
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     public Vector3 get_pos_close_to_player() {
@@ -119,7 +160,7 @@ public class GameManagerScript : MonoBehaviour
         //Instantiate()
     }
 
-    private void incr_score() {
+    public void incr_score() {
         score += score_increment;
         ui_manager.update_score(score);
     }

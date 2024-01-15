@@ -67,4 +67,7 @@ public class DummyController : MonoBehaviour, IDamageable
         curr_fall_time = 0f;
         currentBadState = BadStates.Falling;
     }
+    bool IDamageable.is_alive() {
+        return true;
+    }
 }

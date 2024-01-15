@@ -67,6 +67,10 @@ public class EnemyController : MonoBehaviour, IDamageable
         state_machine.change_state(new FallingState(rb, fall_speed, direction, fall_time, change_to_recovery));
     }
 
+    bool IDamageable.is_alive() {
+        return !is_dead;
+    }
+
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.layer == 6) {
             // hit player

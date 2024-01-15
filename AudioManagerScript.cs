@@ -40,4 +40,9 @@ public class AudioManagerScript : MonoBehaviour
         src.Play();
         return src;
     }
+
+    public void stop_clip(string name) {
+        AudioSource src = sounds_dict[name].audio_src;
+        src.Stop();
+    }
 }

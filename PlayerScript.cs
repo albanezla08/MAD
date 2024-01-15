@@ -79,6 +79,9 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm_script.is_paused) {
+            return;
+        }
         body.velocity = control_velocity;
         if (!hit_by_enemy) {
             if (body.velocity.x > 0) {

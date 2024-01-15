@@ -43,7 +43,7 @@ public class WeaponController : MonoBehaviour
             if (monoBehaviours[i].gameObject == firer) {
                 continue;
             }
-            if (monoBehaviours[i] is IDamageable) {
+            if (monoBehaviours[i] is IDamageable && ((IDamageable)monoBehaviours[i]).is_alive()) {
                 IDamageable script = (IDamageable)monoBehaviours[i];
                 script.on_hit(damage, point_dir);
                 fire_next();
