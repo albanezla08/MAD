@@ -324,6 +324,7 @@ MonoBehaviour:
   recovery_time: 3
   player_detect_distance: 10
   hp: 5
+  drop_prefab: {fileID: 1732911354077527272, guid: c67edb7f5d4bdf646bd8a4273e09e92f, type: 3}
   must_have_hit_range: 0
 --- !u!70 &7081077464899632368
 CapsuleCollider2D:

@@ -1275,6 +1275,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121854658}
   m_CullTransparentMesh: 1
+--- !u!1 &1238672617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1238672618}
+  - component: {fileID: 1238672620}
+  - component: {fileID: 1238672619}
+  m_Layer: 5
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1238672618
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238672617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1844671965}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -17.9332, y: -2.7398}
+  m_SizeDelta: {x: 124.1335, y: 35.4796}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1238672619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238672617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 28
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 28
+--- !u!222 &1238672620
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238672617}
+  m_CullTransparentMesh: 1
 --- !u!1 &1260791049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,12 +1475,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0ebc3f5b1059040a0f91faadb2ff5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_controller_script: {fileID: 0}
+  difficulty_event:
+    m_PersistentCalls:
+      m_Calls: []
   game_over_screen: {fileID: 692240899}
   player: {fileID: 323285669}
   fist: {fileID: 6199270736225903260, guid: a5acdb17b4c8d4048a62bd7bbfd5c416, type: 3}
   gun: {fileID: 908132805481921777, guid: 3ca7f9dec6183974ba59571a5aea4f2d, type: 3}
   bomb: {fileID: 5297969467272001317, guid: 4f6613c0a3481a34eb8ada797bf0126a, type: 3}
+  score_increment: 0
   boundary: 0
   radius_to_player: 0
   spawn_time: 0
@@ -2364,30 +2446,37 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 36df596aeeb66d44296357cc2c758f7f, type: 3}
     volume: 0.1
     loop: 0
+    audio_src: {fileID: 0}
   - name: Loop
     clip: {fileID: 8300000, guid: 1ff0cce0cd548384d83f445c02e6c260, type: 3}
     volume: 0.1
     loop: 1
+    audio_src: {fileID: 0}
   - name: Enemy Hit
     clip: {fileID: 8300000, guid: df7598c12e51c4047bf41e6d72e7e7b6, type: 3}
     volume: 0.1
     loop: 0
+    audio_src: {fileID: 0}
   - name: Punch Throw
     clip: {fileID: 8300000, guid: bc02a06af276dbd4fa3ec05e27991d19, type: 3}
     volume: 0.1
     loop: 0
+    audio_src: {fileID: 0}
   - name: Gun Shoot
     clip: {fileID: 8300000, guid: 59f233196b0eccd49aa0afe25fe481b8, type: 3}
     volume: 0.1
     loop: 0
+    audio_src: {fileID: 0}
   - name: Grenade Explode
     clip: {fileID: 8300000, guid: 97f43903d47342d48b0f15a32164d140, type: 3}
     volume: 0.1
     loop: 0
+    audio_src: {fileID: 0}
   - name: Grenade Throw
     clip: {fileID: 8300000, guid: 9fff41add7628fb458485b1baf337088, type: 3}
     volume: 0.1
     loop: 0
+    audio_src: {fileID: 0}
 --- !u!4 &1705282711
 Transform:
   m_ObjectHideFlags: 0
@@ -2480,7 +2569,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2504,6 +2593,7 @@ RectTransform:
   - {fileID: 1507832386}
   - {fileID: 317470261}
   - {fileID: 692240900}
+  - {fileID: 1238672618}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

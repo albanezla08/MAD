@@ -13,6 +13,8 @@ public class GameManagerScript : MonoBehaviour
     public GameObject fist;
     public GameObject gun;
     public GameObject bomb;
+    private int score;
+    [SerializeField] private int score_increment;
     public float boundary;
     public float radius_to_player;
     public float spawn_time;
@@ -83,16 +85,23 @@ public class GameManagerScript : MonoBehaviour
     public void spawn_enemy() {
         int type = Random.Range(1, 5);
         if (type == 1) {
-            Instantiate(fist, get_pos_close_to_player(), transform.rotation);
+            GameObject fist_object = Instantiate(fist, get_pos_close_to_player(), transform.rotation);
+            fist_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
         } else if (type == 2) {
-            Instantiate(gun, get_pos_close_to_player(), transform.rotation);
+            GameObject gun_object = Instantiate(gun, get_pos_close_to_player(), transform.rotation);
+            gun_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
         } else if (type == 3) {
-            Instantiate(bomb, get_pos_close_to_player(), transform.rotation);
+            GameObject bomb_object = Instantiate(bomb, get_pos_close_to_player(), transform.rotation);
+            bomb_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
         } else if (type == 4) {
             spawn_enemy();
             spawn_enemy();
         }
         //Instantiate()
+    }
+
+    private void incr_score() {
+        score += score_increment;
     }
 
     public void incr_difficulty() {

@@ -324,6 +324,7 @@ MonoBehaviour:
   recovery_time: 1
   player_detect_distance: 30
   hp: 5
+  drop_prefab: {fileID: 9167019521506456077, guid: 333f5eac6078fd646aa82613a76ebd96, type: 3}
   FireRingSpawner: {fileID: 7837318002754000158, guid: f62e0a3adcfde445e9312a8d6e6da912, type: 3}
   EnemyGrenadeChild: {fileID: 1631870731605574246, guid: 7170aedc41341421a925ea39019f989a, type: 3}
   explode_player_distance: 15
