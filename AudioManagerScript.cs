@@ -10,7 +10,7 @@ public class Sound
     public AudioClip clip;
     public float volume = 0.5f;
     public bool loop;
-    public AudioSource audio_src;
+    [HideInInspector] public AudioSource audio_src;
 }
 
 public class AudioManagerScript : MonoBehaviour

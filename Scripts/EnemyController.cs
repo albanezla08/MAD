@@ -46,12 +46,12 @@ public class EnemyController : MonoBehaviour, IDamageable
         state_machine.change_state(new RecoveryState(rb, recovery_time, change_to_wander, stars_renderer));
     }
 
-    void change_to_wander() {
+    protected void change_to_wander() {
         state_machine.change_state(new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer, wander_speed_refresh_time, change_to_wander));
     }
 
     protected virtual void change_to_chase() {
-        state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance, sprite_renderer, exclamation_renderer));
+        state_machine.change_state(new ChaseState(rb, chase_speed, ()=>Debug.Log("got you!"), transform, player_transform, player_detect_distance, sprite_renderer, exclamation_renderer, change_to_wander));
     }
 
     void IDamageable.on_hit(int damage, Vector3 direction) {
@@ -68,8 +68,14 @@ public class EnemyController : MonoBehaviour, IDamageable
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.layer == 6) {
             // hit player
-            change_to_recovery();
+            // change_to_recovery();
+            StartCoroutine(switch_at_end_of_frame());
         }
+    }
+
+    IEnumerator switch_at_end_of_frame() {
+        yield return new WaitForEndOfFrame();
+        change_to_recovery();
     }
 
     void die() {

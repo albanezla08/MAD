@@ -12,7 +12,10 @@ public class ChaseState : IState
     float player_in_range_distance;
     SpriteRenderer sprite_renderer;
     SpriteRenderer exclamation_renderer;
-    public ChaseState(Rigidbody2D rb, float chs_spd, Action on_player_in_range, Transform own_tr, Transform player_tr, float player_in_range_distance, SpriteRenderer sr, SpriteRenderer exclamation_renderer) {
+    float give_up_time = 5f;
+    float give_up_timer = 0f;
+    Action on_give_up;
+    public ChaseState(Rigidbody2D rb, float chs_spd, Action on_player_in_range, Transform own_tr, Transform player_tr, float player_in_range_distance, SpriteRenderer sr, SpriteRenderer exclamation_renderer, Action give_up) {
         this.rb = rb;
         chase_speed = chs_spd;
         this.on_player_in_range = on_player_in_range;
@@ -21,6 +24,7 @@ public class ChaseState : IState
         this.player_in_range_distance = player_in_range_distance;
         sprite_renderer = sr;
         this.exclamation_renderer = exclamation_renderer;
+        on_give_up = give_up;
     }
     void IState.enter()
     {
@@ -28,10 +32,15 @@ public class ChaseState : IState
         dir = dir.normalized;
         rb.velocity = dir * chase_speed;
         exclamation_renderer.enabled = true;
+        give_up_timer = 0f;
     }
 
     void IState.execute()
     {
+        give_up_timer += Time.deltaTime;
+        if (give_up_timer >= give_up_time) {
+            on_give_up();
+        }
         Vector2 dir = player_transform.position - transform.position;
         dir = dir.normalized;
         Vector2 new_vel = dir * chase_speed;

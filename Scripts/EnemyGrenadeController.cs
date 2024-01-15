@@ -10,7 +10,7 @@ public class EnemyGrenadeController : EnemyController
     [SerializeField] float detonate_anim_time = 2.2f;
     private Animator own_animator;
     protected override void change_to_chase() {
-        state_machine.change_state(new ChaseState(rb, chase_speed, change_to_detonating, transform, player_transform, explode_player_distance, sprite_renderer, exclamation_renderer));
+        state_machine.change_state(new ChaseState(rb, chase_speed, change_to_detonating, transform, player_transform, explode_player_distance, sprite_renderer, exclamation_renderer, change_to_wander));
     }
     void change_to_detonating() {
         own_animator = gameObject.GetComponent<Animator>();

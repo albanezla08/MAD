@@ -21,10 +21,12 @@ public class RecoveryState : IState
         recovery_timer = 0f;
         rb.velocity = Vector2.zero;
         stars_renderer.enabled = true;
+        rb.gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     void IState.execute()
     {
+        rb.velocity = Vector2.zero;
         recovery_timer += Time.deltaTime;
         if (recovery_timer >= recovery_time) {
             recovery_timer = 0f;
@@ -34,6 +36,7 @@ public class RecoveryState : IState
 
     void IState.exit()
     {
+        rb.gameObject.layer = LayerMask.NameToLayer("Enemy");
         stars_renderer.enabled = false;
     }
 }

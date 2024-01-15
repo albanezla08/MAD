@@ -21,8 +21,10 @@ public class GameManagerScript : MonoBehaviour
     public float spawn_time;
     public float spawn_timer;
     public float difficulty_lvl;
+    private bool is_game_over;
 
     public void game_over() {
+        is_game_over = true;
         player.SetActive(false);
         game_over_screen.SetActive(true);
     }
@@ -50,6 +52,9 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (is_game_over) {
+            return;
+        }
         if (spawn_timer < spawn_time) {
             spawn_timer += Time.deltaTime;
         } else {
