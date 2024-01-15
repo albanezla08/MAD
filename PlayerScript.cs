@@ -260,8 +260,7 @@ public class PlayerScript : MonoBehaviour
             hit_dir = transform.position - col.transform.position;
             hp--;
             if (hp <= 0) {
-                //SET INACTIVE
-                //Destroy(gameObject);
+                gm_script.game_over();
             }
         }
     }
