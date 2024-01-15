@@ -69,4 +69,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     void die() {
         Destroy(gameObject);
     }
+
+    public void incr_player_detector() {
+        player_detect_distance += 1f;
+    }
+
+    public void incr_speeds() {
+        move_speed += 0.25f;
+        chase_speed += 0.25f;
+    }
 }
