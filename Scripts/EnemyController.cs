@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] protected int hp = 5;
     protected float fall_time;
     protected SpriteRenderer exclamation_renderer;
+    protected SpriteRenderer stars_renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         player_transform = GameObject.FindWithTag("Player").GetComponent<Transform>();
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         exclamation_renderer = transform.Find("Exclamation").GetComponent<SpriteRenderer>();
+        stars_renderer = transform.Find("Stars").GetComponent<SpriteRenderer>();
         wander_state = new WanderState(rb, move_speed, change_to_chase, transform, player_transform, player_detect_distance, sprite_renderer);
         state_machine.change_state(wander_state);
     }
@@ -35,7 +37,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     protected void change_to_recovery() {
-        state_machine.change_state(new RecoveryState(rb, recovery_time, change_to_wander));
+        state_machine.change_state(new RecoveryState(rb, recovery_time, change_to_wander, stars_renderer));
     }
 
     void change_to_wander() {
