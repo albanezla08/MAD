@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour
     //weapon
     private WeaponsQueueController weapon_queue_script;
     [SerializeField] private float fire_speed = 10f;
+    [SerializeField] Transform weapon_icon;
+    private Vector2 point_dir;
     //events for UI
     public UnityEvent<WeaponsQueueController> queue_changed;
     public UnityEvent<int> health_changed;
@@ -176,6 +178,10 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+        // weapon aiming
+        point_dir = calc_direction();
+        weapon_icon.up = point_dir;
+
     }
 
     //sprint
@@ -233,20 +239,32 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         own_animator.SetTrigger("Attack");
-        GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
+        GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position + (Vector3)(point_dir.normalized * 4), Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
-        Vector3 shoot_dir = calc_direction().normalized;
+        Vector3 shoot_dir = point_dir.normalized;
         weapon_body.velocity = shoot_dir * fire_speed;
         weapon_script.initialize(2, weapon_queue_script, shoot_dir, gameObject);
         weapon_queue_script.clear();
         queue_changed.Invoke(weapon_queue_script);
+        update_weapon_icon();
     }
     private Vector3 calc_direction() {
         Vector3 playerPos = transform.position;
         Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursorPos.z = 0;
         return cursorPos - playerPos;
+    }
+
+    private void update_weapon_icon() {
+        GameObject next_weapon = weapon_queue_script.peek_next_weapon();
+        Sprite new_icon;
+        if (next_weapon == null) {
+            new_icon = null;
+        } else {
+            new_icon = next_weapon.GetComponent<SpriteRenderer>().sprite;
+        }
+        weapon_icon.GetChild(0).GetComponent<SpriteRenderer>().sprite = new_icon;
     }
 
     //weapon pickups
@@ -257,6 +275,7 @@ public class PlayerScript : MonoBehaviour
             queue_changed.Invoke(weapon_queue_script);
             if (added_weapon) {
                 audio_manager_script.play_clip("Pickup");
+                update_weapon_icon();
                 Destroy(col.gameObject);
             }
         }

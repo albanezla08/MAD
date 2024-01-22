@@ -32,7 +32,7 @@ public class P_FistController : WeaponController
             // Debug.Log("nothing to shoot");
             return;
         }
-        GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position, Quaternion.identity);
+        GameObject weapon_object = Instantiate(next_weapon_prefab, transform.position + (point_dir.normalized * 4), Quaternion.identity);
         Rigidbody2D weapon_body = weapon_object.GetComponent<Rigidbody2D>();
         WeaponController weapon_script = weapon_object.GetComponent<WeaponController>();
         Transform weapon_transform = weapon_object.transform;
