@@ -30,6 +30,23 @@ public class WeaponsQueueController : MonoBehaviour
         return next_weapon_prefab;
     }
 
+    public void cycle_queue(bool is_dir_up) {
+        int queue_length = weapons_queue.Length;
+        if (is_dir_up) {
+            GameObject first_weapon = weapons_queue[0];
+            for (int i = 1; i < queue_length; i++) {
+                weapons_queue[i-1] = weapons_queue[i];
+            }
+            weapons_queue[queue_length - 1] = first_weapon;
+        } else {
+            GameObject last_weapon = weapons_queue[queue_length - 1];
+            for (int i = queue_length - 2; i > -1; i--) {
+                weapons_queue[i+1] = weapons_queue[i];
+            }
+            weapons_queue[0] = last_weapon;
+        }
+    }
+
     public bool add_weapon(GameObject new_weapon_prefab) {
         for (int i = 0; i < weapons_queue.Length; i++) {
             if (weapons_queue[i] == null) {

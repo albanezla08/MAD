@@ -36,6 +36,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float fire_speed = 10f;
     [SerializeField] Transform weapon_icon;
     private Vector2 point_dir;
+    [SerializeField] private float scroll_threshold = 0f;
     //events for UI
     public UnityEvent<WeaponsQueueController> queue_changed;
     public UnityEvent<int> health_changed;
@@ -182,6 +183,13 @@ public class PlayerScript : MonoBehaviour
         point_dir = calc_direction();
         weapon_icon.up = point_dir;
 
+        // weapon scroll
+        if (Input.mouseScrollDelta.y > scroll_threshold) {
+            scroll_queue(true);
+        } else if (Input.mouseScrollDelta.y < -1 * scroll_threshold) {
+            scroll_queue(false);
+        }
+
     }
 
     //sprint
@@ -265,6 +273,12 @@ public class PlayerScript : MonoBehaviour
             new_icon = next_weapon.GetComponent<SpriteRenderer>().sprite;
         }
         weapon_icon.GetChild(0).GetComponent<SpriteRenderer>().sprite = new_icon;
+    }
+
+    private void scroll_queue (bool is_dir_up) {
+        weapon_queue_script.cycle_queue(is_dir_up);
+        queue_changed.Invoke(weapon_queue_script);
+        update_weapon_icon();
     }
 
     //weapon pickups

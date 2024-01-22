@@ -143,7 +143,22 @@ public class GameManagerScript : MonoBehaviour
     }
 
     public void spawn_enemy() {
-        int type = Random.Range(1, 5);
+        // int type = Random.Range(1, 5);
+        // if (type == 1) {
+        //     GameObject fist_object = Instantiate(fist, get_pos_close_to_player(), transform.rotation);
+        //     fist_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
+        // } else if (type == 2) {
+        //     GameObject gun_object = Instantiate(gun, get_pos_close_to_player(), transform.rotation);
+        //     gun_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
+        // } else if (type == 3) {
+        //     GameObject bomb_object = Instantiate(bomb, get_pos_close_to_player(), transform.rotation);
+        //     bomb_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
+        // } else if (type == 4) {
+        //     spawn_enemy();
+        //     spawn_enemy();
+        // }
+        // version without recursion
+        int type = Random.Range(1, 4);
         if (type == 1) {
             GameObject fist_object = Instantiate(fist, get_pos_close_to_player(), transform.rotation);
             fist_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
@@ -153,9 +168,6 @@ public class GameManagerScript : MonoBehaviour
         } else if (type == 3) {
             GameObject bomb_object = Instantiate(bomb, get_pos_close_to_player(), transform.rotation);
             bomb_object.GetComponent<EnemyController>().death_event.AddListener(incr_score);
-        } else if (type == 4) {
-            spawn_enemy();
-            spawn_enemy();
         }
         //Instantiate()
     }
