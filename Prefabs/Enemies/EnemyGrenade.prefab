@@ -324,7 +324,7 @@ MonoBehaviour:
   fall_speed: 2
   recovery_time: 1
   player_detect_distance: 30
-  hp: 3
+  hp: 1
   drop_prefab: {fileID: 9167019521506456077, guid: 333f5eac6078fd646aa82613a76ebd96, type: 3}
   death_event:
     m_PersistentCalls:
